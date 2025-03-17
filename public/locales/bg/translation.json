@@ -1,0 +1,15 @@
+{
+  "appName": "Mustackable",
+  "theme": "Тема",
+  "version": "Версия",
+  "themes": {
+    "dark": "тъмна",
+    "light": "светла",
+    "system": "системна"
+  },
+  "language": "Език",
+  "locales": {
+    "en": "английски",
+    "bg": "български"
+  }
+}

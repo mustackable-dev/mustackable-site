@@ -1,0 +1,19 @@
+{
+  "appName": "Mustackable",
+  "theme": "Theme",
+  "version": "Version",
+  "themes": {
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System"
+  },
+  "Version": "Version",
+  "language": "Language",
+  "locales": {
+    "en": "English",
+    "bg": "Bulgarian"
+  },
+  "footer": {
+    "copyright": "Moustache Cabal Ltd."
+  }
+}
