@@ -4,16 +4,12 @@ import Footer from "./footer/Footer";
 
 export default function MainLayout() {
   return (
-    <div className="p-5">
-      <header>
-        <Header />
-      </header>
-      <main>
+    <div className="px-8">
+      <Header />
+      <main className="pt-16">
         <Outlet />
       </main>
-      <footer>
-        <Footer />
-      </footer>
+      <Footer />
     </div>
   );
 }

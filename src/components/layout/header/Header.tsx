@@ -6,7 +6,7 @@ import LocaleSelector from "../../configuration/locale-selector/LocaleSelector";
 export default function Header() {
   const { t } = useTranslation();
   return (
-    <div className="flex items-center justify-between pb-6">
+    <header className="fixed flex h-16 w-max items-center justify-between">
       <div className="flex flex-col items-start">
         <a href="/" className="text-text text-2xl font-bold">
           {t("appName")}
@@ -19,6 +19,6 @@ export default function Header() {
         <ThemeSelector showLabel={true} />
         <LocaleSelector showLabel={true} />
       </div>
-    </div>
+    </header>
   );
 }
