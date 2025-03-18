@@ -1,7 +1,7 @@
 .light {
-  --primary: #b0a990;
-  --secondary: #7d7461;
-  --tertiary: #635c51;
-  --background: #ffffff;
-  --text: #343434;
+  --primary-color: #343434;
+  --secondary-color: #7d7461;
+  --tertiary-color: #635c51;
+  --background-color: #dadada;
+  --text-color: #343434;
 }

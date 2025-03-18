@@ -3,8 +3,12 @@ import { ThemeProviderContext } from "../contexts/ThemeProviderContext";
 
 export type Theme = "dark" | "light" | "system";
 
-const storageKey =import.meta.env.VITE_THEME_STORAGE_KEY as string;
+const storageKey = import.meta.env.VITE_THEME_STORAGE_KEY as string;
 const defaultTheme = import.meta.env.VITE_THEME_DEFAULT as string;
+const systemTheme: Theme = window.matchMedia("(prefers-color-scheme: dark)")
+  .matches
+  ? "dark"
+  : "light";
 
 interface ThemeProviderProps {
   children: React.ReactNode;
@@ -21,11 +25,6 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
     root.classList.remove("light", "dark");
 
     if (theme === "system") {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches
-        ? "dark"
-        : "light";
-
       root.classList.add(systemTheme);
       return;
     }
@@ -39,6 +38,7 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
       localStorage.setItem(storageKey, theme);
       setTheme(theme);
     },
+    systemTheme,
   };
 
   return (

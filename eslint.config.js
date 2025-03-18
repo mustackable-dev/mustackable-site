@@ -34,6 +34,12 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       'react-compiler/react-compiler': 'error',
+      "@typescript-eslint/no-misused-promises": [
+        "error",
+        {
+          "checksVoidReturn": false
+        }
+      ]
     },
   },
 )

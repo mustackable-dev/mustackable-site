@@ -13,7 +13,9 @@ export default function ThemeSelector({ showLabel }: ThemeSelectorProps) {
   function LabelRender() {
     if (showLabel) {
       return (
-        <label className="text-text col-span-1 text-right">{t("theme")}</label>
+        <label className="text-text-color col-span-1 text-right">
+          {t("theme")}
+        </label>
       );
     }
   }
@@ -22,7 +24,7 @@ export default function ThemeSelector({ showLabel }: ThemeSelectorProps) {
     return (
       <>
         <select
-          className={`bg-background text-text px-2 col-span-${showLabel ? "1" : "2"}`}
+          className={`bg-background-color text-text-color px-2 col-span-${showLabel ? "1" : "2"}`}
           value={theme}
           id="theme-selector"
           onChange={(x) => {

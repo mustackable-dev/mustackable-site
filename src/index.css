@@ -3,11 +3,11 @@
 @import "./themes/light.css";
 @import "./themes/dark.css";
 
-@theme {
-  --color-primary: var(--primary);
-  --color-secondary: var(--secondary);
-  --color-tertiary: var(--tertiary);
-  --color-background: var(--background);
-  --color-text: var(--text);
-  --font-nunito: "Nunito", sans-serif;
+@theme inline {
+  --color-primary-color: var(--primary-color);
+  --color-secondary-color: var(--secondary-color);
+  --color-tertiary-color: var(--tertiary-color);
+  --color-background-color: var(--background-color);
+  --color-text-color: var(--text-color);
+  --font-sans: "Nunito", sans-serif;
 }
