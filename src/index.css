@@ -8,6 +8,7 @@
   --color-secondary-color: var(--secondary-color);
   --color-tertiary-color: var(--tertiary-color);
   --color-background-color: var(--background-color);
+  --color-accent-color: var(--accent-color);
   --color-text-color: var(--text-color);
   --font-sans: "Nunito", sans-serif;
 }

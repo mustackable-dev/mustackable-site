@@ -1,5 +1,5 @@
 {
-  "appName": "MUSTACKABLE",
+  "appName": "МУСТАКАБАЛ",
   "theme": "Тема",
   "version": "Версия",
   "themes": {
@@ -11,5 +11,8 @@
   "locales": {
     "en": "English",
     "bg": "български"
+  },
+  "footer": {
+    "copyright": "Моусташ Кабал ЕООД"
   }
 }

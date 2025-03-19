@@ -5,7 +5,6 @@ interface ButtonProps {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   children?: React.ReactNode;
   standardIcon?: boolean;
-  // className?: string;
   disabled?: boolean;
 }
 
@@ -13,7 +12,6 @@ export default function Button({
   onClick,
   children,
   disabled = false,
-  // className = "",
 }: ButtonProps) {
   return (
     <button
