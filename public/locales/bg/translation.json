@@ -1,5 +1,5 @@
 {
-  "appName": "МУСТАКАБАЛ",
+  "appName": "MUSTACKABLE",
   "theme": "Тема",
   "version": "Версия",
   "themes": {
@@ -16,6 +16,8 @@
     "company-name": "Моусташ Кабал ЕООД",
     "company-address-1": "бул. \"Шипченски проход\" 18",
     "company-address-2": "бл. А, ет. 3, ап. офис 9",
-    "company-address-3": "София 1113"
+    "company-address-3": "София 1113",
+    "trademark-notice": "Mustackable е търговска марка на",
+    "rights": "Всички права запазени"
   }
 }
