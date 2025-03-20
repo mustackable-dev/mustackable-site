@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import Locale from "../../../assets/images/locale.svg?react";
+import Chevron from "../../../assets/images/chevron.svg?react";
 import Button from "../../shared/Button";
 import { useState } from "react";
 
@@ -15,6 +16,8 @@ export default function LocaleSelector() {
   return (
     <div
       className="relative flex flex-col items-end"
+      aria-haspopup="true"
+      aria-expanded={dropdownOpen}
       onMouseEnter={() => {
         setDropdownOpen(true);
       }}
@@ -23,7 +26,10 @@ export default function LocaleSelector() {
       }}
     >
       <Button>
-        <Locale className="fill-primary-color size-6" />
+        <div className="flex items-center gap-1">
+          <Locale className="fill-primary-color size-6" />
+          <Chevron className="stroke-primary-color size-5 rotate-90" />
+        </div>
       </Button>
       <div
         className={`${dropdownOpen ? "opacity-100" : "pointer-events-none opacity-0"} absolute top-6 z-10 py-2 transition-opacity duration-300`}

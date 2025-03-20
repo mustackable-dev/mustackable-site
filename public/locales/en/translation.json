@@ -13,6 +13,9 @@
     "bg": "български"
   },
   "footer": {
-    "copyright": "Moustache Cabal Ltd."
+    "company-name": "Moustache Cabal Ltd.",
+    "company-address-1": "18 Shipchenski prohod blvd.",
+    "company-address-2": "bldg. A, fl. 3, apt. 9",
+    "company-address-3": "1113 Sofia"
   }
 }
