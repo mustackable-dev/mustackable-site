@@ -40,14 +40,14 @@ export default function LocaleSelector() {
               await handleClick("en");
             }}
           >
-            <span className="text-text-color">{t("locales.en")}</span>
+            <span>{t("locales.en")}</span>
           </Button>
           <Button
             onClick={async () => {
               await handleClick("bg");
             }}
           >
-            <span className="text-text-color">{t("locales.bg")}</span>
+            <span>{t("locales.bg")}</span>
           </Button>
         </div>
       </div>

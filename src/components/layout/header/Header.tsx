@@ -7,10 +7,7 @@ export default function Header() {
   const { t } = useTranslation();
   return (
     <header className="fixed flex h-16 w-full justify-between px-4">
-      <a
-        href="/"
-        className="text-text-color flex items-center gap-4 text-xl font-black"
-      >
+      <a href="/" className="flex items-center gap-4 text-xl font-black">
         <img className="size-8" src="/logo.svg" />
         {t("appName")}
       </a>
