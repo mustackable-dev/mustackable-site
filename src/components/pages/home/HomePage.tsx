@@ -3,10 +3,26 @@ import { useTranslation } from "react-i18next";
 export default function HomePage() {
   const { t } = useTranslation();
   return (
-    <div className="flex items-center justify-center">
-      <h1 className="font-nunito w-1/2 text-center text-5xl font-black">
-        {t("appName")}
-      </h1>
+    <div>
+      {t("body.section-1-title")}
+
+      {t("body.section-1-1")}
+
+      {t("body.section-1-2")}
+
+      {t("body.section-2-title")}
+
+      {t("body.section-2-1")}
+
+      {t("body.section-2-2")}
+
+      {t("body.section-3-title")}
+
+      {t("body.section-3-1")}
+
+      {t("body.section-3-2")}
+
+      {t("body.section-4-title")}
     </div>
   );
 }
