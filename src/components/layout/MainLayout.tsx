@@ -6,7 +6,7 @@ export default function MainLayout() {
   return (
     <>
       <Header />
-      <main className="pt-24">
+      <main className="px-4 pt-24">
         <Outlet />
       </main>
       <Footer />

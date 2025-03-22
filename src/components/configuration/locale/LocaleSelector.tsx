@@ -15,7 +15,7 @@ export default function LocaleSelector() {
 
   return (
     <div
-      className="relative flex flex-col items-end"
+      className="relative flex flex-col items-end text-base"
       aria-haspopup="true"
       aria-expanded={dropdownOpen}
       onMouseEnter={() => {
