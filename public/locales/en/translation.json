@@ -21,15 +21,17 @@
     "rights": "All rights reserved"
   },
   "body": {
-    "section-1-title": "Mustackable",
-    "section-1-1": "Stacking the odds in your favour with bespoke software solutions.",
-    "section-1-2": "We create robust, scalable applications designed to take your business to the next level",
-    "section-2-title": "Our expertise",
-    "section-2-1": "Backend. Frontend. Mobile. AI. In the cloud and on-premise. We can make it work :)",
-    "section-2-2": "We use battle-tested modern technologies",
-    "section-3-title": "Our team",
-    "section-3-1": "Our lean team of developers and consultants brings decades of expertise in crafting software solutions for both startups and large enterprises.",
-    "section-3-2": "We treat our customers like partners. Your success is our success. Let's create something great together!",
-    "section-4-title": "Let's Talk!"
+    "section-1-title": "Made for you",
+    "section-1-1": "We build robust and scalable applications to elevate your business to the next level",
+    "section-1-2": "Stack the odds in your favour with custom software solutions tailored to your needs",
+    "section-2-title": "Whatever it takes",
+    "section-2-1": "We are a one-stop for all your software needs: backend, frontend, mobile and AI",
+    "section-2-2": "In the cloud or on-premise. We got this :)",
+    "section-3-title": "Built to last",
+    "section-3-1": "We use a battle-tested stack of modern technologies",
+    "section-4-title": "Avengers assemble",
+    "section-4-1": "Our lean team is a mix of expert developers and outstanding business consultants",
+    "section-4-2": "We will be by your side from conception to deployment and beyond",
+    "call-to-contact": "Tell us how we can help you"
   }
 }

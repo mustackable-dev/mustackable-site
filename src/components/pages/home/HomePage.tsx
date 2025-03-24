@@ -20,9 +20,13 @@ export default function HomePage() {
 
       {t("body.section-3-1")}
 
-      {t("body.section-3-2")}
-
       {t("body.section-4-title")}
+
+      {t("body.section-4-1")}
+
+      {t("body.section-4-2")}
+
+      {t("body.call-to-contact")}
     </div>
   );
 }
