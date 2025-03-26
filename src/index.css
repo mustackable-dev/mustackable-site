@@ -10,5 +10,52 @@
   --color-background-color: var(--background-color);
   --color-accent-color: var(--accent-color);
   --color-text-color: var(--text-color);
+  --color-backdrop: rgb(55, 171, 200);
+
+  --color-shine-regular: rgb(135, 205, 222);
+
   --font-sans: "Nunito", sans-serif;
+
+  --animate-text-illuminate: gradient-shift 3s ease forwards;
+
+  --animate-stack-radiate: gradient-expand 2s ease forwards;
+}
+
+@utility animation-delay-* {
+  animation-delay: --value(integer)ms;
+}
+
+@utility text-illuminate-* {
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0),
+    rgba(255, 255, 255, calc(--value(integer) * 1%)),
+    rgba(255, 255, 255, calc(--value(integer) * 1%))
+  );
+  background-size: 300% 100%;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position-x: 0%;
+  }
+
+  100% {
+    background-position-x: 100%;
+  }
+}
+
+@keyframes gradient-expand {
+  0% {
+    background-position: 50% 50%;
+    background-size: 50% 50%;
+  }
+
+  100% {
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+  }
 }
