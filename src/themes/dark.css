@@ -1,8 +1,9 @@
 .dark {
   --primary-color: #ffffff;
-  --secondary-color: #809cb9;
+  --secondary-color: #d0d0d0;
   --tertiary-color: #adacb5;
   --background-color: #2d3142;
-  --text-color: #ffffff;
   --accent-color: #434760;
+  --text-body-color: #d0d0d0;
+  --text-heading-color: #ffffff;
 }

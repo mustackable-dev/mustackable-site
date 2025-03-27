@@ -27,14 +27,14 @@ export default function LocaleSelector() {
     >
       <Button>
         <div className="flex items-center gap-1">
-          <Locale className="fill-primary-color size-6" />
-          <Chevron className="stroke-primary-color size-5 rotate-90" />
+          <Locale className="size-6" />
+          <Chevron className="size-5 rotate-90" />
         </div>
       </Button>
       <div
         className={`${dropdownOpen ? "opacity-100" : "pointer-events-none opacity-0"} absolute top-6 z-10 py-2 transition-opacity duration-300`}
       >
-        <div className="bg-accent-color border-secondary-color flex w-fit flex-col items-start gap-2 rounded-sm border-1 p-2">
+        <div className="bg-theme-accent border-theme-secondary flex w-fit flex-col items-start gap-2 rounded-sm border-1 p-2">
           <Button
             onClick={async () => {
               await handleClick("en");

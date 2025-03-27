@@ -11,13 +11,13 @@ export default function ContactBar({ vertical = false }: ContactBarProps) {
   return (
     <div className={`flex ${vertical ? "flex-col" : "flex-row"} gap-4`}>
       <Button>
-        <FormMessage className="stroke-primary-color size-6" />
+        <FormMessage className="size-6" />
       </Button>
       <Button>
-        <LinkedId className="fill-primary-color size-6" />
+        <LinkedId className="size-6" />
       </Button>
       <Button>
-        <GitHub className="fill-primary-color size-6" />
+        <GitHub className="size-6" />
       </Button>
     </div>
   );

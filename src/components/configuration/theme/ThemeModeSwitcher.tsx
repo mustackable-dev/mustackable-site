@@ -9,7 +9,7 @@ export default function ThemeModeSwitcher() {
   const [switchingTheme, setSwitchingTheme] = useState(false);
   const currentTheme = theme == "system" ? systemTheme : theme;
   const targetTheme = currentTheme == "dark" ? "light" : "dark";
-  const Icon = currentTheme === "dark" ? DarkMode : LightMode;
+  const Icon = currentTheme === "dark" ? LightMode : DarkMode;
 
   useEffect(() => {
     if (switchingTheme) {
@@ -25,7 +25,7 @@ export default function ThemeModeSwitcher() {
       }}
     >
       <Icon
-        className={`fill-primary-color transition-opacity duration-300 ${switchingTheme ? "opacity-0" : "opacity-100"}`}
+        className={`transition-opacity duration-300 ${switchingTheme ? "opacity-0" : "opacity-100"}`}
       />
     </Button>
   );

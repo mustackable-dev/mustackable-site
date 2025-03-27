@@ -15,7 +15,7 @@ export default function Button({
 }: ButtonProps) {
   return (
     <button
-      className={`cursor-pointer opacity-75 transition-opacity duration-300 hover:opacity-100`}
+      className={`cursor-pointer transition-colors duration-300 text-theme-secondary hover:text-theme-primary`}
       onClick={onClick}
       disabled={disabled}
     >

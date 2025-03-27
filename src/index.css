@@ -4,15 +4,13 @@
 @import "./themes/dark.css";
 
 @theme inline {
-  --color-primary-color: var(--primary-color);
-  --color-secondary-color: var(--secondary-color);
-  --color-tertiary-color: var(--tertiary-color);
-  --color-background-color: var(--background-color);
-  --color-accent-color: var(--accent-color);
-  --color-text-color: var(--text-color);
-  --color-backdrop: rgb(55, 171, 200);
-
-  --color-shine-regular: rgb(135, 205, 222);
+  --color-theme-primary: var(--primary-color);
+  --color-theme-secondary: var(--secondary-color);
+  --color-theme-tertiary: var(--tertiary-color);
+  --color-theme-background: var(--background-color);
+  --color-theme-accent: var(--accent-color);
+  --color-theme-text-body: var(--text-body-color);
+  --color-theme-text-heading: var(--text-heading-color);
 
   --font-sans: "Nunito", sans-serif;
 
@@ -22,20 +20,50 @@
 }
 
 @utility animation-delay-* {
+  /* prettier-ignore */
   animation-delay: --value(integer)ms;
 }
 
-@utility text-illuminate-* {
+@utility text-illuminate-heading {
   background-image: linear-gradient(
     to right,
     rgba(0, 0, 0, 0),
     rgba(0, 0, 0, 0),
-    rgba(255, 255, 255, calc(--value(integer) * 1%)),
-    rgba(255, 255, 255, calc(--value(integer) * 1%))
+    var(--text-heading-color),
+    var(--text-heading-color)
   );
   background-size: 300% 100%;
   background-clip: text;
   color: transparent;
+}
+
+@utility text-illuminate-body {
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0),
+    var(--text-body-color),
+    var(--text-body-color)
+  );
+  background-size: 300% 100%;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility stack-illuminate-normal {
+  background-image: radial-gradient(
+    rgb(135, 205, 222, 0.5),
+    rgba(0, 0, 0, 0) 70%
+  );
+  background-repeat: no-repeat;
+}
+
+@utility stack-illuminate-logo {
+  background-image: radial-gradient(
+    rgb(255, 212, 42, 0.5),
+    rgba(0, 0, 0, 0) 70%
+  );
+  background-repeat: no-repeat;
 }
 
 @keyframes gradient-shift {

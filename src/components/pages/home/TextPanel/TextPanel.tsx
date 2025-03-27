@@ -19,18 +19,18 @@ export default function TextPanel({
   return (
     <div
       ref={ref}
-      className="grid w-full grid-cols-3 items-center justify-between"
+      className="grid max-w-[902px] w-full grid-cols-3 items-center justify-between"
     >
       <div className={`col-span-2 flex flex-col gap-8 ${textRight ? "order-2": ""}`}>
         <p
-          className={`text-3xl font-black ${shown ? "text-illuminate-100 animation-delay-500 animate-text-illuminate" : "invisible"}`}
+          className={`text-3xl font-black ${shown ? "text-illuminate-heading animation-delay-700 animate-text-illuminate" : "invisible"}`}
         >
           {title.toUpperCase()}
         </p>
         <div
           className={`flex flex-col gap-8 ${
             shown
-              ? "text-illuminate-75 animate-text-illuminate animation-delay-500"
+              ? "text-illuminate-body animate-text-illuminate animation-delay-700"
               : "invisible"
           }`}
         >
@@ -42,9 +42,9 @@ export default function TextPanel({
         </div>
       </div>
       <div
-        className={`${shown ? "animate-stack-radiate col-span-1 flex justify-center bg-radial from-[rgb(135,205,222)] to-transparent to-70% bg-no-repeat": "invisible"} ${textRight ? "order-1":""}`}
+        className={`${shown ? "animate-stack-radiate size-60 col-span-1 flex justify-center items-center stack-illuminate-normal": "invisible"} ${textRight ? "order-1":""}`}
       >
-        <Stack className="z-10 size-52" />
+        <Stack className="z-10 w-44" />
       </div>
     </div>
   );
