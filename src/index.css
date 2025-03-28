@@ -14,7 +14,8 @@
 
   --font-sans: "Nunito", sans-serif;
 
-  --animate-text-illuminate: gradient-shift 3s ease forwards;
+  --animate-text-illuminate-left: gradient-shift-left 3s ease forwards;
+  --animate-text-illuminate-right: gradient-shift-right 3s ease forwards;
 
   --animate-stack-radiate: gradient-expand 2s ease forwards;
 }
@@ -24,7 +25,7 @@
   animation-delay: --value(integer)ms;
 }
 
-@utility text-illuminate-heading {
+@utility text-illuminate-heading-left {
   background-image: linear-gradient(
     to right,
     rgba(0, 0, 0, 0),
@@ -37,7 +38,21 @@
   color: transparent;
 }
 
-@utility text-illuminate-body {
+@utility text-illuminate-heading-right {
+  background-image: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0),
+    var(--text-heading-color),
+    var(--text-heading-color)
+  );
+  background-size: 300% 100%;
+  background-position-x: 100%;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-illuminate-body-left {
   background-image: linear-gradient(
     to right,
     rgba(0, 0, 0, 0),
@@ -46,6 +61,20 @@
     var(--text-body-color)
   );
   background-size: 300% 100%;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-illuminate-body-right {
+  background-image: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0),
+    var(--text-body-color),
+    var(--text-body-color)
+  );
+  background-size: 300% 100%;
+  background-position-x: 100%;
   background-clip: text;
   color: transparent;
 }
@@ -66,13 +95,23 @@
   background-repeat: no-repeat;
 }
 
-@keyframes gradient-shift {
+@keyframes gradient-shift-left {
   0% {
     background-position-x: 0%;
   }
 
   100% {
     background-position-x: 100%;
+  }
+}
+
+@keyframes gradient-shift-right {
+  0% {
+    background-position-x: 100%;
+  }
+
+  100% {
+    background-position-x: 0%;
   }
 }
 

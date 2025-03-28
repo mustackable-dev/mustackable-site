@@ -12,25 +12,29 @@ export default function TextPanel({
   descriptionTexts,
   title,
   Stack,
-  textRight = false
+  textRight = false,
 }: TextPanelProps) {
   const ref = useRef<HTMLDivElement>(null);
   const { shown } = useShown(ref);
   return (
     <div
       ref={ref}
-      className="grid max-w-[902px] w-full grid-cols-3 items-center justify-between"
+      className="grid w-full max-w-[902px] grid-cols-3 items-center justify-between gap-8"
     >
-      <div className={`col-span-2 flex flex-col gap-8 ${textRight ? "order-2": ""}`}>
+      <div
+        className={`animation-delay-700 col-span-2 flex flex-col gap-8 ${textRight ? "order-2" : ""}`}
+      >
         <p
-          className={`text-3xl font-black ${shown ? "text-illuminate-heading animation-delay-700 animate-text-illuminate" : "invisible"}`}
+          className={`text-3xl font-black ${shown ? (textRight ? "text-illuminate-heading-right animate-text-illuminate-right" : "text-illuminate-heading-left animate-text-illuminate-left") : "invisible"}`}
         >
           {title.toUpperCase()}
         </p>
         <div
           className={`flex flex-col gap-8 ${
             shown
-              ? "text-illuminate-body animate-text-illuminate animation-delay-700"
+              ? textRight
+                ? "text-illuminate-body-right animate-text-illuminate-right"
+                : "text-illuminate-body-left animate-text-illuminate-left"
               : "invisible"
           }`}
         >
@@ -42,9 +46,9 @@ export default function TextPanel({
         </div>
       </div>
       <div
-        className={`${shown ? "animate-stack-radiate size-60 col-span-1 flex justify-center items-center stack-illuminate-normal": "invisible"} ${textRight ? "order-1":""}`}
+        className={`${shown ? "animate-stack-radiate stack-illuminate-normal col-span-1 flex aspect-square items-center justify-center" : "invisible"} ${textRight ? "order-1" : ""}`}
       >
-        <Stack className="z-10 w-44" />
+        <Stack className="size-9/12" />
       </div>
     </div>
   );

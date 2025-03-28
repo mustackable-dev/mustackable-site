@@ -11,7 +11,7 @@ import LogoPanel from "./LogoPanel/LogoPanel";
 export default function HomePage() {
   const { t } = useTranslation();
   return (
-    <div className="flex flex-col items-center gap-8">
+    <div className="flex flex-col items-center gap-16">
       {/* <TextPanel>
         <p className="text-6xl font-black">{t("appName")}</p>
         <div>
@@ -19,7 +19,7 @@ export default function HomePage() {
           <Level0 className="relative size-52" />
         </div>
       </TextPanel> */}
-      <LogoPanel />
+      <LogoPanel textRight={true} />
       <TextPanel
         title={t("body.section-1-title")}
         descriptionTexts={[t("body.section-1-1"), t("body.section-1-2")]}
@@ -29,6 +29,7 @@ export default function HomePage() {
         title={t("body.section-2-title")}
         descriptionTexts={[t("body.section-2-1"), t("body.section-2-2")]}
         Stack={Level2}
+        textRight={true}
       />
       <TextPanel
         title={t("body.section-3-title")}
@@ -39,6 +40,7 @@ export default function HomePage() {
         title={t("body.section-4-title")}
         descriptionTexts={[t("body.section-4-1"), t("body.section-4-2")]}
         Stack={Level4}
+        textRight={true}
       />
       {t("body.section-1-title")}
 
@@ -63,7 +65,6 @@ export default function HomePage() {
       {t("body.section-4-2")}
 
       {t("body.call-to-contact")}
-
     </div>
   );
 }
