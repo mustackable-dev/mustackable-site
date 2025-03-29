@@ -6,7 +6,7 @@ const stacksCount = 5;
 export function calculateLogoData(rect: DOMRectReadOnly): LogoData {
     const stackWithHaloWidth = rect.width;
     const stackWidth = rect.width * 0.75;
-    const stackGap = stackWidth * 0.11865;
+    const stackGap = rect.width * 0.11865;
     const animationSteps: StepCoordinates[] = []
     for (let i = 0; i < stacksCount; i++) {
         const stackPosition: StepCoordinates = {
