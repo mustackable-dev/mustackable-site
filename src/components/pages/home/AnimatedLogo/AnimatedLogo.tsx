@@ -5,57 +5,120 @@ import Level2 from "../../../../assets/images/stack_level_2.svg?react";
 import Level3 from "../../../../assets/images/stack_level_3.svg?react";
 import Level4 from "../../../../assets/images/stack_level_4.svg?react";
 import Placeholder from "../../../../assets/images/stack_placeholder.svg?react";
+import { useAnimationDataStore } from "../../../../stores/AnimationDataStore";
+import { useShallow } from "zustand/shallow";
 
 interface StackLogoProps {
   currentLevel: number;
 }
 
 export default function AnimatedLogo({ currentLevel }: StackLogoProps) {
+  const { stackWidth, stackGap, animationSteps } = useAnimationDataStore(
+    useShallow((s) => ({
+      stackWidth: s.logoData?.stackWidth ?? 0,
+      stackGap: s.logoData?.stackGap ?? 0,
+      animationSteps: s.logoData?.animationSteps,
+    })),
+  );
+  // const offsetTopPadding = ((stackWidth ?? 0) - correctWidth) / 2;
+
   function GenerateLogo() {
     const renderArray: JSX.Element[] = [];
     switch (currentLevel) {
       case 0:
-        renderArray.push(<Level0 className="absolute z-40 size-36" key="0" />);
+        renderArray.push(
+          <Level0
+            className="absolute z-40 aspect-square"
+            key="0"
+            style={{ width: stackWidth }}
+          />,
+        );
         break;
       case 1:
-        renderArray.push(<Level1 className="absolute z-40 size-36" key="1" />);
+        renderArray.push(
+          <Level1
+            className="absolute z-40 aspect-square"
+            key="1"
+            style={{ width: stackWidth }}
+          />,
+        );
         break;
       case 2:
-        renderArray.push(<Level2 className="absolute z-40 size-36" key="2" />);
+        renderArray.push(
+          <Level2
+            className="absolute z-40 aspect-square"
+            key="2"
+            style={{ width: stackWidth }}
+          />,
+        );
         break;
       case 3:
-        renderArray.push(<Level3 className="absolute z-40 size-36" key="3" />);
+        renderArray.push(
+          <Level3
+            className="absolute z-40 aspect-square"
+            key="3"
+            style={{ width: stackWidth }}
+          />,
+        );
         break;
       case 4:
-        renderArray.push(<Level4 className="absolute z-40 size-36" key="4" />);
+        renderArray.push(
+          <Level4
+            className="absolute z-40 aspect-square"
+            key="4"
+            style={{ width: stackWidth }}
+          />,
+        );
         break;
     }
     if (currentLevel < 4) {
       renderArray.push(
-        <Placeholder className="absolute top-6 z-30 size-36" key="5" />,
+        <Placeholder
+          className="absolute z-30 aspect-square"
+          key="5"
+          style={{ width: stackWidth, top: stackGap }}
+        />,
       );
     }
     if (currentLevel < 3) {
       renderArray.push(
-        <Placeholder className="absolute top-12 z-20 size-36" key="6" />,
+        <Placeholder
+          className="absolute z-20 aspect-square"
+          key="6"
+          style={{ width: stackWidth, top: stackGap * 2 }}
+        />,
       );
     }
     if (currentLevel < 2) {
       renderArray.push(
-        <Placeholder className="absolute top-18 z-10 size-36" key="7" />,
+        <Placeholder
+          className="absolute z-10 aspect-square"
+          key="7"
+          style={{ width: stackWidth, top: stackGap * 3 }}
+        />,
       );
     }
     if (currentLevel < 1) {
       renderArray.push(
-        <Placeholder className="absolute top-24 size-36" key="8" />,
+        <Placeholder
+          className="absolute aspect-square"
+          key="8"
+          style={{ width: stackWidth, top: stackGap * 4 }}
+        />,
       );
     }
 
     return renderArray;
   }
-  return (
-    <div className="relative">
+  return animationSteps ? (
+    <div
+      className="relative"
+      style={{
+        top: animationSteps[currentLevel].top,
+        left: animationSteps[currentLevel].left,
+      }}
+    >
       <GenerateLogo />
     </div>
-  );
+  ) : null;
 }

@@ -1,11 +1,12 @@
 import { FunctionComponent, SVGProps, useRef } from "react";
-import { useShown } from "../../../../hooks/useIntersection";
+import { useShown } from "../../../../hooks/useShown";
 
 interface TextPanelProps {
   title: string;
   descriptionTexts: string[];
   Stack: FunctionComponent<SVGProps<SVGSVGElement>>;
   textRight?: boolean;
+  visible?: boolean;
 }
 
 export default function TextPanel({
@@ -13,13 +14,14 @@ export default function TextPanel({
   title,
   Stack,
   textRight = false,
+  visible = false,
 }: TextPanelProps) {
   const ref = useRef<HTMLDivElement>(null);
   const { shown } = useShown(ref);
   return (
     <div
       ref={ref}
-      className="grid w-full max-w-[902px] grid-cols-3 items-center justify-between gap-8"
+      className={`${visible ? "visible" : "invisible"} grid w-full max-w-[902px] grid-cols-3 items-center justify-between gap-8`}
     >
       <div
         className={`animation-delay-700 col-span-2 flex flex-col gap-8 ${textRight ? "order-2" : ""}`}

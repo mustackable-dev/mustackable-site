@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@utility animation-delay-* {
+  /* prettier-ignore */
+  animation-delay: --value(integer)ms;
+}
+
+@utility text-illuminate-heading-left {
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0),
+    var(--text-heading-color),
+    var(--text-heading-color)
+  );
+  background-size: 300% 100%;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-illuminate-heading-right {
+  background-image: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0),
+    var(--text-heading-color),
+    var(--text-heading-color)
+  );
+  background-size: 300% 100%;
+  background-position-x: 100%;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-illuminate-body-left {
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0),
+    var(--text-body-color),
+    var(--text-body-color)
+  );
+  background-size: 300% 100%;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-illuminate-body-right {
+  background-image: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0),
+    var(--text-body-color),
+    var(--text-body-color)
+  );
+  background-size: 300% 100%;
+  background-position-x: 100%;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility stack-illuminate-normal {
+  background-image: radial-gradient(
+    rgb(135, 205, 222, 0.5),
+    rgba(0, 0, 0, 0) 70%
+  );
+  background-repeat: no-repeat;
+}
+
+@utility stack-illuminate-logo {
+  background-image: radial-gradient(
+    rgb(255, 212, 42, 0.5),
+    rgba(0, 0, 0, 0) 70%
+  );
+  background-repeat: no-repeat;
+}
+
+@keyframes gradient-shift-left {
+  0% {
+    background-position-x: 0%;
+  }
+
+  100% {
+    background-position-x: 100%;
+  }
+}
+
+@keyframes gradient-shift-right {
+  0% {
+    background-position-x: 100%;
+  }
+
+  100% {
+    background-position-x: 0%;
+  }
+}
+
+@keyframes gradient-expand {
+  0% {
+    background-position: 50% 50%;
+    background-size: 50% 50%;
+  }
+
+  100% {
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+  }
+}

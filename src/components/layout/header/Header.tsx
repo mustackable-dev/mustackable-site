@@ -6,7 +6,7 @@ import Separator from "./Separator/Separator";
 export default function Header() {
   const { t } = useTranslation();
   return (
-    <header className="bg-theme-background fixed z-50 flex h-16 w-full justify-between px-4">
+    <header className="bg-theme-background fixed z-60 flex h-16 w-full justify-between px-4">
       <a href="/" className="flex items-center gap-4 text-xl font-black">
         <img className="size-8" src="/logo.svg" />
         <p className="text-theme-text-heading">{t("appName")}</p>
