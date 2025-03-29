@@ -1,5 +1,7 @@
 import { FunctionComponent, SVGProps, useRef } from "react";
 import { useShown } from "../../../../hooks/useShown";
+import { useAnimationDataStore } from "../../../../stores/AnimationDataStore";
+import { useShallow } from "zustand/shallow";
 
 interface TextPanelProps {
   title: string;
@@ -18,21 +20,30 @@ export default function TextPanel({
 }: TextPanelProps) {
   const ref = useRef<HTMLDivElement>(null);
   const { shown } = useShown(ref);
+  const { stackWithHaloWidth } = useAnimationDataStore(
+    useShallow((s) => ({ stackWithHaloWidth: s.logoData?.stackWithHaloWidth })),
+  );
   return (
     <div
       ref={ref}
-      className={`${visible ? "visible" : "invisible"} grid w-full max-w-[902px] grid-cols-3 items-center justify-between gap-8`}
+      className={`${visible ? "visible" : "invisible"} theme-max-panel-width grid w-full grid-cols-3 items-center justify-between`}
+      style={{
+        height: stackWithHaloWidth,
+        marginTop: (stackWithHaloWidth ?? 0) * 0.2,
+        gap: (stackWithHaloWidth ?? 0) * 0.15,
+      }}
     >
       <div
-        className={`animation-delay-700 col-span-2 flex flex-col gap-8 ${textRight ? "order-2" : ""}`}
+        className={`animation-delay-700 col-span-2 flex flex-col ${textRight ? "order-2" : ""}`}
       >
-        <p
-          className={`text-3xl font-black ${shown ? (textRight ? "text-illuminate-heading-right animate-text-illuminate-right" : "text-illuminate-heading-left animate-text-illuminate-left") : "invisible"}`}
+        <h2
+          className={`font-black ${shown ? (textRight ? "text-illuminate-heading-right animate-text-illuminate-right" : "text-illuminate-heading-left animate-text-illuminate-left") : "invisible"}`}
         >
           {title.toUpperCase()}
-        </p>
+        </h2>
+        <br />
         <div
-          className={`flex flex-col gap-8 ${
+          className={`flex flex-col ${
             shown
               ? textRight
                 ? "text-illuminate-body-right animate-text-illuminate-right"
@@ -41,9 +52,12 @@ export default function TextPanel({
           }`}
         >
           {descriptionTexts.map((x, i) => (
-            <p className="text-xl font-normal" key={i}>
-              {x}
-            </p>
+            <>
+              <p className="font-normal" key={i}>
+                {x}
+              </p>
+              {i < descriptionTexts.length - 1 ? <br /> : null}
+            </>
           ))}
         </div>
       </div>

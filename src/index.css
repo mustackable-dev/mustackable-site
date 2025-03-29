@@ -3,6 +3,7 @@
 @import "./styles/themes/light.css";
 @import "./styles/themes/dark.css";
 @import "./styles/animations/common.css";
+@import "./styles/utility.css";
 
 @theme inline {
   --color-theme-primary: var(--primary-color);
@@ -19,4 +20,21 @@
   --animate-text-illuminate-right: gradient-shift-right 3s ease forwards;
 
   --animate-stack-radiate: gradient-expand 2s ease forwards;
+
+  --text-base: clamp(0.032rem, 2.4vw, 1.25rem);
+}
+
+@layer base {
+  h1 {
+    font-size: clamp(0.1rem, 7.7vw, 4.5rem);
+  }
+  h2 {
+    font-size: clamp(0.05rem, 4vw, 1.875rem);
+  }
+  h3 {
+    font-size: clamp(0.05rem, 3.5vw, 1.675rem);
+  }
+  body {
+    font-size: clamp(0.032rem, 2.4vw, 1.25rem);
+  }
 }

@@ -13,8 +13,8 @@ export default function HomePage() {
   const { t } = useTranslation();
   const [currentLevel] = useState(4);
   return (
-    <div className="flex flex-col items-center gap-16">
-      <AnimatedLogo currentLevel={0} />
+    <div className="flex flex-col items-center">
+      <AnimatedLogo currentLevel={4} />
       <LogoPanel textRight={true} visible={currentLevel > -1} />
       <TextPanel
         title={t("body.section-1-title")}

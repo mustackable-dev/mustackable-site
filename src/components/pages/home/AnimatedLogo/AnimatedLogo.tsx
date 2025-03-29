@@ -20,7 +20,6 @@ export default function AnimatedLogo({ currentLevel }: StackLogoProps) {
       animationSteps: s.logoData?.animationSteps,
     })),
   );
-  // const offsetTopPadding = ((stackWidth ?? 0) - correctWidth) / 2;
 
   function GenerateLogo() {
     const renderArray: JSX.Element[] = [];

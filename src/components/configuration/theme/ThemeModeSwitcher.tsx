@@ -25,7 +25,7 @@ export default function ThemeModeSwitcher() {
       }}
     >
       <Icon
-        className={`transition-opacity duration-300 ${switchingTheme ? "opacity-0" : "opacity-100"}`}
+        className={`transition-opacity duration-300 ${switchingTheme ? "opacity-0" : "opacity-100"} size-6 max-sm:size-4`}
       />
     </Button>
   );

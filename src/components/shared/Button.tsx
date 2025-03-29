@@ -15,7 +15,7 @@ export default function Button({
 }: ButtonProps) {
   return (
     <button
-      className={`cursor-pointer transition-colors duration-300 text-theme-secondary hover:text-theme-primary`}
+      className={`text-theme-secondary hover:text-theme-primary cursor-pointer transition-colors duration-300`}
       onClick={onClick}
       disabled={disabled}
     >

@@ -27,27 +27,27 @@ export default function LocaleSelector() {
     >
       <Button>
         <div className="flex items-center gap-1">
-          <Locale className="size-6" />
-          <Chevron className="size-5 rotate-90" />
+          <Locale className="size-6 max-sm:size-4" />
+          <Chevron className="size-5 rotate-90 max-sm:size-3" />
         </div>
       </Button>
       <div
-        className={`${dropdownOpen ? "opacity-100" : "pointer-events-none opacity-0"} absolute top-6 z-10 py-2 transition-opacity duration-300`}
+        className={`${dropdownOpen ? "opacity-100" : "pointer-events-none opacity-0"} absolute top-6 z-10 py-2 transition-opacity duration-300 max-sm:top-4 max-sm:py-1`}
       >
-        <div className="bg-theme-accent border-theme-secondary flex w-fit flex-col items-start gap-2 rounded-sm border-1 p-2">
+        <div className="bg-theme-accent border-theme-secondary flex w-fit flex-col items-start gap-2 rounded-sm border-1 p-2 max-sm:p-1">
           <Button
             onClick={async () => {
               await handleClick("en");
             }}
           >
-            <span>{t("locales.en")}</span>
+            <p>{t("locales.en")}</p>
           </Button>
           <Button
             onClick={async () => {
               await handleClick("bg");
             }}
           >
-            <span>{t("locales.bg")}</span>
+            <p>{t("locales.bg")}</p>
           </Button>
         </div>
       </div>
