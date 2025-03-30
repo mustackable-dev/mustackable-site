@@ -1,7 +1,8 @@
 import { FunctionComponent, SVGProps, useRef } from "react";
 import { useShown } from "../../../../hooks/useShown";
-import { useAnimationDataStore } from "../../../../stores/AnimationDataStore";
+import { useSceneDataStore } from "../../../../stores/SceneDataStore";
 import { useShallow } from "zustand/shallow";
+import { useAnimatedLogo } from "../../../../hooks/useAnimatedLogo";
 
 interface TextPanelProps {
   title: string;
@@ -9,6 +10,7 @@ interface TextPanelProps {
   Stack: FunctionComponent<SVGProps<SVGSVGElement>>;
   textRight?: boolean;
   visible?: boolean;
+  sequenceIndex: number;
 }
 
 export default function TextPanel({
@@ -17,12 +19,21 @@ export default function TextPanel({
   Stack,
   textRight = false,
   visible = false,
+  sequenceIndex = 0,
 }: TextPanelProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { shown } = useShown(ref);
-  const { stackWithHaloWidth } = useAnimationDataStore(
-    useShallow((s) => ({ stackWithHaloWidth: s.logoData?.stackWithHaloWidth })),
+  const { stackWithHaloWidth } = useSceneDataStore(
+    useShallow((s) => ({
+      stackWithHaloWidth: s.sceneData?.stackWithHaloWidth,
+    })),
   );
+
+  const { triggerAnimationStep } = useAnimatedLogo();
+
+  const ref = useRef<HTMLDivElement>(null);
+  const { shown } = useShown(ref, () => {
+    triggerAnimationStep(sequenceIndex);
+  });
+
   return (
     <div
       ref={ref}
@@ -52,12 +63,10 @@ export default function TextPanel({
           }`}
         >
           {descriptionTexts.map((x, i) => (
-            <>
-              <p className="font-normal" key={i}>
-                {x}
-              </p>
+            <div key={i}>
+              <p className="font-normal">{x}</p>
               {i < descriptionTexts.length - 1 ? <br /> : null}
-            </>
+            </div>
           ))}
         </div>
       </div>

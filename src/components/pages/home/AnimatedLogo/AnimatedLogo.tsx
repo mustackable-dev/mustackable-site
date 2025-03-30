@@ -5,25 +5,24 @@ import Level2 from "../../../../assets/images/stack_level_2.svg?react";
 import Level3 from "../../../../assets/images/stack_level_3.svg?react";
 import Level4 from "../../../../assets/images/stack_level_4.svg?react";
 import Placeholder from "../../../../assets/images/stack_placeholder.svg?react";
-import { useAnimationDataStore } from "../../../../stores/AnimationDataStore";
+import { useSceneDataStore } from "../../../../stores/SceneDataStore";
 import { useShallow } from "zustand/shallow";
 
-interface StackLogoProps {
-  currentLevel: number;
-}
-
-export default function AnimatedLogo({ currentLevel }: StackLogoProps) {
-  const { stackWidth, stackGap, animationSteps } = useAnimationDataStore(
-    useShallow((s) => ({
-      stackWidth: s.logoData?.stackWidth ?? 0,
-      stackGap: s.logoData?.stackGap ?? 0,
-      animationSteps: s.logoData?.animationSteps,
-    })),
-  );
+export default function AnimatedLogo() {
+  const { stackWidth, stackGap, animationSteps, currentStack, logoElement } =
+    useSceneDataStore(
+      useShallow((s) => ({
+        stackWidth: s.sceneData?.stackWidth ?? 0,
+        stackGap: s.sceneData?.stackGap ?? 0,
+        animationSteps: s.sceneData?.animationSteps,
+        currentStack: s.currentStack,
+        logoElement: s.logoElementRef,
+      })),
+    );
 
   function GenerateLogo() {
     const renderArray: JSX.Element[] = [];
-    switch (currentLevel) {
+    switch (currentStack) {
       case 0:
         renderArray.push(
           <Level0
@@ -70,7 +69,7 @@ export default function AnimatedLogo({ currentLevel }: StackLogoProps) {
         );
         break;
     }
-    if (currentLevel < 4) {
+    if (currentStack < 4) {
       renderArray.push(
         <Placeholder
           className="absolute z-30 aspect-square"
@@ -79,7 +78,7 @@ export default function AnimatedLogo({ currentLevel }: StackLogoProps) {
         />,
       );
     }
-    if (currentLevel < 3) {
+    if (currentStack < 3) {
       renderArray.push(
         <Placeholder
           className="absolute z-20 aspect-square"
@@ -88,7 +87,7 @@ export default function AnimatedLogo({ currentLevel }: StackLogoProps) {
         />,
       );
     }
-    if (currentLevel < 2) {
+    if (currentStack < 2) {
       renderArray.push(
         <Placeholder
           className="absolute z-10 aspect-square"
@@ -97,7 +96,7 @@ export default function AnimatedLogo({ currentLevel }: StackLogoProps) {
         />,
       );
     }
-    if (currentLevel < 1) {
+    if (currentStack < 1) {
       renderArray.push(
         <Placeholder
           className="absolute aspect-square"
@@ -111,10 +110,11 @@ export default function AnimatedLogo({ currentLevel }: StackLogoProps) {
   }
   return animationSteps ? (
     <div
+      ref={logoElement}
       className="relative"
       style={{
-        top: animationSteps[currentLevel].top,
-        left: animationSteps[currentLevel].left,
+        top: animationSteps[currentStack].top,
+        left: animationSteps[currentStack].left,
       }}
     >
       <GenerateLogo />

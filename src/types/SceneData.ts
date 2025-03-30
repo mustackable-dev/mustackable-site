@@ -1,6 +1,6 @@
 import { StepCoordinates } from "./StepCoordinates"
 
-export interface LogoData {
+export interface SceneData {
     stackWithHaloWidth: number
     stackWidth: number
     stackGap: number

@@ -1,20 +1,20 @@
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import Level0 from "../../../../assets/images/stack_level_0.svg?react";
-import { useLogoDataCalculation } from "../../../../hooks/useLogoDataCalculation";
-import { useAnimationDataStore } from "../../../../stores/AnimationDataStore";
+import { useSceneCalculation } from "../../../../hooks/useSceneCalculation";
+import { useSceneDataStore } from "../../../../stores/SceneDataStore";
 import { useShallow } from "zustand/shallow";
 
 export default function LogoPanel({ textRight = false, visible = false }) {
   const ref = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
-  const { stackWithHaloWidth } = useAnimationDataStore(
+  const { stackWithHaloWidth } = useSceneDataStore(
     useShallow((s) => ({
-      stackWithHaloWidth: s.logoData?.stackWithHaloWidth,
+      stackWithHaloWidth: s.sceneData?.stackWithHaloWidth,
     })),
   );
 
-  useLogoDataCalculation(ref);
+  useSceneCalculation(ref);
 
   return (
     <div
