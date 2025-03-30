@@ -20,18 +20,23 @@ export function useSceneCalculation() {
             const stackWithHaloWidth = rect.width;
             const stackWidth = rect.width * 0.75;
             const stackGap = rect.width * 0.11865;
-            generateStackAnimations(stackWithHaloWidth, stackWidth, stackGap);
-            const baseDelay = 1500;
+            const baseDelay = 500;
             const animationTimings = [1000, 1800, 2600, 3400, 4200];
+            generateStackAnimations(stackWithHaloWidth, stackWidth, stackGap, baseDelay, animationTimings);
             setSceneData({ stackWithHaloWidth, stackWidth, stackGap, baseDelay, animationTimings });
         }
 
-        function generateStackAnimations(stackWithHaloWidth: number, stackWidth: number, stackGap: number) {
+        function generateStackAnimations(stackWithHaloWidth: number, stackWidth: number, stackGap: number, baseDelay: number, animationTimings: number[]) {
 
             const animations: string[] = [];
 
             for (let i = 0; i < stacksCount; i++) {
                 const stackPosition = `
+                    .stack-${i.toString()}-animation {
+                        animation: stack-${i.toString()} ${(animationTimings[i] / 1000).toString()}s ease forwards;
+                        animation-delay: ${baseDelay.toString()}ms;
+                    }
+
                     @keyframes stack-${i.toString()} {
                         from {
                             top: ${(stackGap * i).toString()}px;

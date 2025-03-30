@@ -13,6 +13,8 @@ export default function LogoPanel({ textRight = false }) {
     })),
   );
 
+  const shineDelay = 400;
+
   return (
     <div
       className={`theme-max-panel-width grid w-full grid-cols-3 items-center justify-between`}
@@ -23,7 +25,7 @@ export default function LogoPanel({ textRight = false }) {
     >
       <h1
         className={`${textRight ? "text-illuminate-heading-right animate-text-illuminate-right order-2" : "text-illuminate-heading-left animate-text-illuminate-left"} col-span-2 font-black`}
-        style={{ animationDelay: `${(delay + 700).toString()}ms` }}
+        style={{ animationDelay: `${(delay + shineDelay).toString()}ms` }}
       >
         {t("appName")}
       </h1>

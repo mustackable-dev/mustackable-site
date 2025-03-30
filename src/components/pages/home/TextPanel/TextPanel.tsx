@@ -24,6 +24,7 @@ export default function TextPanel({
     })),
   );
 
+  const shineDelay = 400;
   const ref = useRef<HTMLDivElement>(null);
 
   return (
@@ -39,7 +40,7 @@ export default function TextPanel({
       <div className={`col-span-2 flex flex-col ${textRight ? "order-2" : ""}`}>
         <h2
           className={`font-black ${textRight ? "text-illuminate-heading-right animate-text-illuminate-right" : "text-illuminate-heading-left animate-text-illuminate-left"}`}
-          style={{ animationDelay: `${delay.toString()}ms` }}
+          style={{ animationDelay: `${(delay + shineDelay).toString()}ms` }}
         >
           {title.toUpperCase()}
         </h2>
@@ -50,7 +51,7 @@ export default function TextPanel({
               ? "text-illuminate-body-right animate-text-illuminate-right"
               : "text-illuminate-body-left animate-text-illuminate-left"
           }`}
-          style={{ animationDelay: `${delay.toString()}ms` }}
+          style={{ animationDelay: `${(delay + shineDelay).toString()}ms` }}
         >
           {descriptionTexts.map((x, i) => (
             <div key={i}>
