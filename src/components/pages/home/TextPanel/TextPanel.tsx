@@ -1,66 +1,56 @@
-import { FunctionComponent, SVGProps, useRef } from "react";
-import { useShown } from "../../../../hooks/useShown";
+import { useRef } from "react";
 import { useSceneDataStore } from "../../../../stores/SceneDataStore";
 import { useShallow } from "zustand/shallow";
-import { useAnimatedLogo } from "../../../../hooks/useAnimatedLogo";
 
 interface TextPanelProps {
   title: string;
   descriptionTexts: string[];
-  Stack: FunctionComponent<SVGProps<SVGSVGElement>>;
   textRight?: boolean;
-  visible?: boolean;
-  sequenceIndex: number;
+  index: number;
 }
 
 export default function TextPanel({
   descriptionTexts,
   title,
-  Stack,
   textRight = false,
-  visible = false,
-  sequenceIndex = 0,
+  index,
 }: TextPanelProps) {
-  const { stackWithHaloWidth } = useSceneDataStore(
+  const { stackWithHaloWidth, delay } = useSceneDataStore(
     useShallow((s) => ({
       stackWithHaloWidth: s.sceneData?.stackWithHaloWidth,
+      delay:
+        (s.sceneData?.animationTimings[index] ?? 0) +
+        (s.sceneData?.baseDelay ?? 0),
     })),
   );
 
-  const { triggerAnimationStep } = useAnimatedLogo();
-
   const ref = useRef<HTMLDivElement>(null);
-  const { shown } = useShown(ref, () => {
-    triggerAnimationStep(sequenceIndex);
-  });
 
   return (
     <div
       ref={ref}
-      className={`${visible ? "visible" : "invisible"} theme-max-panel-width grid w-full grid-cols-3 items-center justify-between`}
+      className={`theme-max-panel-width grid w-full grid-cols-3 items-center justify-between`}
       style={{
         height: stackWithHaloWidth,
         marginTop: (stackWithHaloWidth ?? 0) * 0.2,
         gap: (stackWithHaloWidth ?? 0) * 0.15,
       }}
     >
-      <div
-        className={`animation-delay-700 col-span-2 flex flex-col ${textRight ? "order-2" : ""}`}
-      >
+      <div className={`col-span-2 flex flex-col ${textRight ? "order-2" : ""}`}>
         <h2
-          className={`font-black ${shown ? (textRight ? "text-illuminate-heading-right animate-text-illuminate-right" : "text-illuminate-heading-left animate-text-illuminate-left") : "invisible"}`}
+          className={`font-black ${textRight ? "text-illuminate-heading-right animate-text-illuminate-right" : "text-illuminate-heading-left animate-text-illuminate-left"}`}
+          style={{ animationDelay: `${delay.toString()}ms` }}
         >
           {title.toUpperCase()}
         </h2>
         <br />
         <div
           className={`flex flex-col ${
-            shown
-              ? textRight
-                ? "text-illuminate-body-right animate-text-illuminate-right"
-                : "text-illuminate-body-left animate-text-illuminate-left"
-              : "invisible"
+            textRight
+              ? "text-illuminate-body-right animate-text-illuminate-right"
+              : "text-illuminate-body-left animate-text-illuminate-left"
           }`}
+          style={{ animationDelay: `${delay.toString()}ms` }}
         >
           {descriptionTexts.map((x, i) => (
             <div key={i}>
@@ -71,9 +61,12 @@ export default function TextPanel({
         </div>
       </div>
       <div
-        className={`${shown ? "animate-stack-radiate stack-illuminate-normal col-span-1 flex aspect-square items-center justify-center" : "invisible"} ${textRight ? "order-1" : ""}`}
+        className={`animate-stack-radiate stack-illuminate-normal col-span-1 flex aspect-square items-center justify-center ${textRight ? "order-1" : ""}`}
+        style={{
+          animationDelay: `${delay.toString()}ms`,
+        }}
       >
-        <Stack className="size-9/12" />
+        {/* <Stack className="size-9/12" /> */}
       </div>
     </div>
   );

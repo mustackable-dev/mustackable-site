@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@theme inline {
+  --animate-text-illuminate-left: gradient-shift-left 3s ease forwards;
+  --animate-text-illuminate-right: gradient-shift-right 3s ease forwards;
+  --animate-stack-radiate: gradient-expand 2s ease forwards;
+}
+
 @utility animation-delay-* {
   /* prettier-ignore */
   animation-delay: --value(integer)ms;
@@ -65,6 +71,7 @@
     rgba(0, 0, 0, 0) 70%
   );
   background-repeat: no-repeat;
+  background-size: 0% 0%;
 }
 
 @utility stack-illuminate-logo {
@@ -73,6 +80,7 @@
     rgba(0, 0, 0, 0) 70%
   );
   background-repeat: no-repeat;
+  background-size: 0% 0%;
 }
 
 @keyframes gradient-shift-left {

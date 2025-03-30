@@ -1,40 +1,39 @@
-import { useRef } from "react";
 import { useTranslation } from "react-i18next";
-import Level0 from "../../../../assets/images/stack_level_0.svg?react";
-import { useSceneCalculation } from "../../../../hooks/useSceneCalculation";
 import { useSceneDataStore } from "../../../../stores/SceneDataStore";
 import { useShallow } from "zustand/shallow";
 
-export default function LogoPanel({ textRight = false, visible = false }) {
-  const ref = useRef<HTMLDivElement>(null);
+export default function LogoPanel({ textRight = false }) {
   const { t } = useTranslation();
-  const { stackWithHaloWidth } = useSceneDataStore(
+  const { stackWithHaloWidth, referenceStack, delay } = useSceneDataStore(
     useShallow((s) => ({
       stackWithHaloWidth: s.sceneData?.stackWithHaloWidth,
+      referenceStack: s.referenceStack,
+      delay:
+        (s.sceneData?.animationTimings[0] ?? 0) + (s.sceneData?.baseDelay ?? 0),
     })),
   );
 
-  useSceneCalculation(ref);
-
   return (
     <div
-      className={`${visible ? "visible" : "invisible"} theme-max-panel-width grid w-full grid-cols-3 items-center justify-between`}
+      className={`theme-max-panel-width grid w-full grid-cols-3 items-center justify-between`}
       style={{
         height: stackWithHaloWidth,
         gap: (stackWithHaloWidth ?? 0) * 0.15,
       }}
     >
       <h1
-        className={`${textRight ? "text-illuminate-heading-right animate-text-illuminate-right order-2" : "text-illuminate-heading-left animate-text-illuminate-left"} animation-delay-700 col-span-2 font-black`}
+        className={`${textRight ? "text-illuminate-heading-right animate-text-illuminate-right order-2" : "text-illuminate-heading-left animate-text-illuminate-left"} col-span-2 font-black`}
+        style={{ animationDelay: `${(delay + 700).toString()}ms` }}
       >
         {t("appName")}
       </h1>
       <div
-        ref={ref}
         className={`${textRight ? "order-1" : ""} animate-stack-radiate stack-illuminate-logo col-span-1 flex aspect-square items-center justify-center`}
-      >
-        <Level0 className="z-50 size-9/12" />
-      </div>
+        style={{
+          animationDelay: `${delay.toString()}ms`,
+        }}
+        ref={referenceStack}
+      />
     </div>
   );
 }

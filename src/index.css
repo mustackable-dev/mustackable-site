@@ -16,11 +16,6 @@
 
   --font-sans: "Nunito", sans-serif;
 
-  --animate-text-illuminate-left: gradient-shift-left 3s ease forwards;
-  --animate-text-illuminate-right: gradient-shift-right 3s ease forwards;
-
-  --animate-stack-radiate: gradient-expand 2s ease forwards;
-
   --text-base: clamp(0.032rem, 2.4vw, 1.25rem);
 }
 
