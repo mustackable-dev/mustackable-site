@@ -1,35 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 @import "tailwindcss";
+@import "./styles/base.css";
+@import "./styles/utility.css";
 @import "./styles/themes/light.css";
 @import "./styles/themes/dark.css";
 @import "./styles/animations/common.css";
-@import "./styles/utility.css";
-
-@theme inline {
-  --color-theme-primary: var(--primary-color);
-  --color-theme-secondary: var(--secondary-color);
-  --color-theme-tertiary: var(--tertiary-color);
-  --color-theme-background: var(--background-color);
-  --color-theme-accent: var(--accent-color);
-  --color-theme-text-body: var(--text-body-color);
-  --color-theme-text-heading: var(--text-heading-color);
-
-  --font-sans: "Nunito", sans-serif;
-
-  --text-base: clamp(0.032rem, 2.4vw, 1.25rem);
-}
-
-@layer base {
-  h1 {
-    font-size: clamp(0.1rem, 7.7vw, 4.5rem);
-  }
-  h2 {
-    font-size: clamp(0.05rem, 4vw, 1.875rem);
-  }
-  h3 {
-    font-size: clamp(0.05rem, 3.5vw, 1.675rem);
-  }
-  body {
-    font-size: clamp(0.032rem, 2.4vw, 1.25rem);
-  }
-}

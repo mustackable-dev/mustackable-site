@@ -1,8 +1,10 @@
 import { useShallow } from "zustand/shallow";
 import { useSceneDataStore } from "../stores/SceneDataStore";
 import { useEffect } from "react";
+import { createFilledArray, createFilledArrayWithFunction, getRandomInteger } from "../utilities/Common";
 
 const stacksCount = 5;
+const easingFunctions = ["ease", "ease-in", "ease-out", "ease-in-out", "linear", ...createFilledArray<string>(10, "bezier")];
 
 export function useSceneCalculation() {
     const { setSceneData, referenceStack } =
@@ -20,8 +22,8 @@ export function useSceneCalculation() {
             const stackWithHaloWidth = rect.width;
             const stackWidth = rect.width * 0.75;
             const stackGap = rect.width * 0.11865;
-            const baseDelay = 500;
-            const animationTimings = [1000, 1800, 2600, 3400, 4200];
+            const baseDelay = 2500;
+            const animationTimings = [1000, 1400, 1800, 2200, 2600];
             generateStackAnimations(stackWithHaloWidth, stackWidth, stackGap, baseDelay, animationTimings);
             setSceneData({ stackWithHaloWidth, stackWidth, stackGap, baseDelay, animationTimings });
         }
@@ -33,26 +35,95 @@ export function useSceneCalculation() {
             for (let i = 0; i < stacksCount; i++) {
                 const stackPosition = `
                     .stack-${i.toString()}-animation {
-                        animation: stack-${i.toString()} ${(animationTimings[i] / 1000).toString()}s ease forwards;
-                        animation-delay: ${baseDelay.toString()}ms;
+                        animation: 
+                            stack-${i.toString()}-x ${animationTimings[i].toString()}ms ${generateRandomTimingFunction()} ${baseDelay.toString()}ms forwards,
+                            stack-${i.toString()}-y ${animationTimings[i].toString()}ms linear ${baseDelay.toString()}ms forwards;
                     }
 
-                    @keyframes stack-${i.toString()} {
+                    @keyframes stack-${i.toString()}-x {
                         from {
-                            top: ${(stackGap * i).toString()}px;
                             left: 0px
                         }
                         to {
-                            top: ${((stackWithHaloWidth - stackWidth) / 2 + i * (stackWithHaloWidth + stackWithHaloWidth * 0.2)).toString()}px;
                             left: ${((stackWithHaloWidth + stackWithHaloWidth * 0.15) * (i % 2 === 1 ? 1 : -1)).toString()}px
+                        }
+                    }
+
+                    @keyframes stack-${i.toString()}-y {
+                        from {
+                            top: ${(stackGap * i).toString()}px;
+                        }
+                        to {
+                            top: ${((stackWithHaloWidth - stackWidth) / 2 + i * (stackWithHaloWidth + stackWithHaloWidth * 0.2)).toString()}px;
                         }
                     }`;
                 animations.push(stackPosition);
             };
 
+            animations.push(generateWandAnimation(baseDelay, stackWidth));
+
             const animationSheet = document.getElementById("stackAnimations");
             if (animationSheet)
                 animationSheet.innerHTML = animations.join("\r\n");
+        }
+
+        function generateWandAnimation(baseDelay: number, stackWidth: number) {
+            const fadeInTime = 750;
+            const animationDuration = baseDelay - fadeInTime;
+            return `
+                    .wand-animation {
+                        animation: 
+                              pop-in ${(animationDuration * 0.25).toString()}ms cubic-bezier(0.25, 0.5, 0.75, 1.5) ${fadeInTime.toString()}ms backwards,
+                              tap ${(animationDuration * 0.5).toString()}ms ease ${(fadeInTime + animationDuration * 0.25).toString()}ms forwards,
+                              pop-out ${(animationDuration * 0.25).toString()}ms cubic-bezier(0.25, 0.5, 0.75, 1.5) ${(fadeInTime + animationDuration * 0.75).toString()}ms forwards;
+                        left: ${(stackWidth * 1.1).toString()}px;
+                        top: ${(stackWidth * 0.6).toString()}px;
+                        position: absolute;
+                        width: ${(stackWidth * 0.5).toString()}px;
+                        height: ${(stackWidth * 0.5).toString()}px;
+                        z-index: 70;
+                    }
+
+                    .wand-tap {
+                        
+                        animation:
+                            blink 100ms step-end ${(fadeInTime + animationDuration * 0.43).toString()}ms forwards;
+                        position: absolute;
+                        top: -25%;
+                        opacity: 0%;
+                    }
+
+                    @keyframes tap {
+                        0% {
+                        }
+
+                        50% {
+                            transform: rotate(-45deg);
+                            left: ${(stackWidth * 0.8).toString()}px;
+                        }
+
+                        100% {
+                        }
+                    }
+
+                    @keyframes blink {
+                        from {
+                            opacity:100%;
+                        }
+
+                        to {
+                            opacity:0%;
+                        }
+                    }`;
+        }
+
+        function generateRandomTimingFunction(): string {
+            let randomEasing = easingFunctions[getRandomInteger(0, easingFunctions.length - 1)];
+            if (randomEasing === "bezier") {
+                const timings = createFilledArrayWithFunction<number>(4, () => { return getRandomInteger(-30, 100) / 100 })
+                randomEasing = `cubic-bezier(${Math.abs(timings[0]).toString()},${timings[1].toString()},${Math.abs(timings[2]).toString()},${timings[3].toString()})`;
+            }
+            return randomEasing;
         }
 
         if (referenceStack.current) {
