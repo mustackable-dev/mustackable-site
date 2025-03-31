@@ -24,11 +24,11 @@ export function useSceneCalculation() {
             const stackGap = rect.width * 0.11865;
             const baseDelay = 2500;
             const animationTimings = [1000, 1400, 1800, 2200, 2600];
-            generateStackAnimations(stackWithHaloWidth, stackWidth, stackGap, baseDelay, animationTimings);
+            generateAnimationData(stackWithHaloWidth, stackWidth, stackGap, baseDelay, animationTimings);
             setSceneData({ stackWithHaloWidth, stackWidth, stackGap, baseDelay, animationTimings });
         }
 
-        function generateStackAnimations(stackWithHaloWidth: number, stackWidth: number, stackGap: number, baseDelay: number, animationTimings: number[]) {
+        function generateAnimationData(stackWithHaloWidth: number, stackWidth: number, stackGap: number, baseDelay: number, animationTimings: number[]) {
 
             const animations: string[] = [];
 
@@ -61,6 +61,7 @@ export function useSceneCalculation() {
             };
 
             animations.push(generateWandAnimation(baseDelay, stackWidth));
+            animations.push(generateFadeInPanelClasses(stackWithHaloWidth));
 
             const animationSheet = document.getElementById("stackAnimations");
             if (animationSheet)
@@ -115,6 +116,45 @@ export function useSceneCalculation() {
                             opacity:0%;
                         }
                     }`;
+        }
+
+        function generateFadeInPanelClasses(stackWithHaloWidth: number) {
+            return `
+                .fade-in-panel-left {
+                    height: ${stackWithHaloWidth.toString()}px;
+                    width: ${(stackWithHaloWidth * 2.15).toString()}px;
+                    background-image: linear-gradient(
+                        to left,
+                        rgba(0, 0, 0, 0),
+                        rgba(0, 0, 0, 0),
+                        var(--background-color),
+                        var(--background-color)
+                    );
+                    position: absolute;
+                    background-size: 300% 100%;
+                    background-position-x: 0%;
+                    pointer-events: none;
+                    animation: gradient-shift-left 3s ease forwards;
+                    z-index: -1;
+                }
+
+                .fade-in-panel-right {
+                    height: ${stackWithHaloWidth.toString()}px;
+                    width: ${(stackWithHaloWidth * 2.15).toString()}px;
+                    background-image: linear-gradient(
+                        to right,
+                        rgba(0, 0, 0, 0),
+                        rgba(0, 0, 0, 0),
+                        var(--background-color),
+                        var(--background-color)
+                    );
+                    position: absolute;
+                    background-size: 300% 100%;
+                    background-position-x: 100%;
+                    pointer-events: none;
+                    animation: gradient-shift-right 3s ease forwards;
+                    z-index: -1;
+                }`;
         }
 
         function generateRandomTimingFunction(): string {

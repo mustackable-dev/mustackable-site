@@ -11,17 +11,20 @@ export default function Footer() {
     })),
   );
   return (
-    <footer
-      className="animate-pop-in flex flex-col items-center gap-12 p-4"
-      style={{ animationDelay: `${delay.toString()}ms` }}
-    >
-      <div className="flex w-full flex-col items-center gap-2">
+    <footer className="flex flex-col items-center gap-12 p-4">
+      <div
+        className="animate-pop-in flex flex-col items-center gap-2"
+        style={{ animationDelay: `${delay.toString()}ms` }}
+      >
         <p>{t("footer.company-address-1")}</p>
         <p>{t("footer.company-address-2")}</p>
         <p>{t("footer.company-address-3")}</p>
         <ContactBar vertical={false} />
       </div>
-      <div className="w-full text-center italic">
+      <div
+        className="animate-pop-in text-center italic"
+        style={{ animationDelay: `${delay.toString()}ms` }}
+      >
         <p className="pb-2">
           {t("footer.trademark-notice")} {t("footer.company-name")}.
         </p>

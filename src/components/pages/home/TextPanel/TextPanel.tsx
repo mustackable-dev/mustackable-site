@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import { useSceneDataStore } from "../../../../stores/SceneDataStore";
 import { useShallow } from "zustand/shallow";
 
@@ -7,6 +6,7 @@ interface TextPanelProps {
   descriptionTexts: string[];
   textRight?: boolean;
   index: number;
+  children?: React.ReactNode;
 }
 
 export default function TextPanel({
@@ -14,22 +14,19 @@ export default function TextPanel({
   title,
   textRight = false,
   index,
+  children,
 }: TextPanelProps) {
   const { stackWithHaloWidth, delay } = useSceneDataStore(
     useShallow((s) => ({
       stackWithHaloWidth: s.sceneData?.stackWithHaloWidth,
-      delay:
-        (s.sceneData?.animationTimings[index] ?? 0) +
-        (s.sceneData?.baseDelay ?? 0),
+      delay: (s.sceneData?.animationTimings[index] ?? 0) + (s.sceneData?.baseDelay ?? 0),
     })),
   );
 
   const shineDelay = 400;
-  const ref = useRef<HTMLDivElement>(null);
 
   return (
     <div
-      ref={ref}
       className={`theme-max-panel-width grid w-full grid-cols-3 items-center justify-between`}
       style={{
         height: stackWithHaloWidth,
@@ -38,27 +35,20 @@ export default function TextPanel({
       }}
     >
       <div className={`col-span-2 flex flex-col ${textRight ? "order-2" : ""}`}>
-        <h2
-          className={`font-black ${textRight ? "text-illuminate-heading-right animate-text-illuminate-right" : "text-illuminate-heading-left animate-text-illuminate-left"}`}
-          style={{ animationDelay: `${(delay + shineDelay).toString()}ms` }}
-        >
-          {title.toUpperCase()}
-        </h2>
-        <br />
         <div
-          className={`flex flex-col ${
-            textRight
-              ? "text-illuminate-body-right animate-text-illuminate-right"
-              : "text-illuminate-body-left animate-text-illuminate-left"
-          }`}
+          className={textRight ? "fade-in-panel-right" : "fade-in-panel-left"}
           style={{ animationDelay: `${(delay + shineDelay).toString()}ms` }}
-        >
+        />
+        <h2 className="text-theme-text-heading -z-2 font-black">{title.toUpperCase()}</h2>
+        <br />
+        <div className="-z-2 flex flex-col">
           {descriptionTexts.map((x, i) => (
             <div key={i}>
               <p className="font-normal">{x}</p>
               {i < descriptionTexts.length - 1 ? <br /> : null}
             </div>
           ))}
+          {children}
         </div>
       </div>
       <div

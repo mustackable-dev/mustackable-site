@@ -8,8 +8,7 @@ export default function LogoPanel({ textRight = false }) {
     useShallow((s) => ({
       stackWithHaloWidth: s.sceneData?.stackWithHaloWidth,
       referenceStack: s.referenceStack,
-      delay:
-        (s.sceneData?.animationTimings[0] ?? 0) + (s.sceneData?.baseDelay ?? 0),
+      delay: (s.sceneData?.animationTimings[0] ?? 0) + (s.sceneData?.baseDelay ?? 0),
     })),
   );
 
@@ -23,12 +22,17 @@ export default function LogoPanel({ textRight = false }) {
         gap: (stackWithHaloWidth ?? 0) * 0.15,
       }}
     >
-      <h1
-        className={`${textRight ? "text-illuminate-heading-right animate-text-illuminate-right order-2" : "text-illuminate-heading-left animate-text-illuminate-left"} col-span-2 font-black`}
-        style={{ animationDelay: `${(delay + shineDelay).toString()}ms` }}
-      >
-        {t("appName")}
-      </h1>
+      <div className={`col-span-2 flex flex-col ${textRight ? "order-2" : ""}`}>
+        <div
+          className={textRight ? "fade-in-panel-right" : "fade-in-panel-left"}
+          style={{ animationDelay: `${(delay + shineDelay).toString()}ms` }}
+        />
+        <h1
+          className={`${textRight ? "order-2" : ""} text-theme-text-heading -z-2 col-span-2 font-black`}
+        >
+          {t("appName")}
+        </h1>
+      </div>
       <div
         className={`${textRight ? "order-1" : ""} animate-stack-radiate stack-illuminate-logo col-span-1 flex aspect-square items-center justify-center`}
         style={{

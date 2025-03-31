@@ -4,6 +4,7 @@ import LogoPanel from "./LogoPanel/LogoPanel";
 import AnimatedLogo from "./AnimatedLogo/AnimatedLogo";
 import ContactForm from "./ContactForm/ContactForm";
 import { useSceneCalculation } from "../../../hooks/useSceneCalculation";
+import CSharp from "../../../assets/images/c_sharp.svg?react";
 
 export default function HomePage() {
   const { t } = useTranslation();
@@ -29,7 +30,9 @@ export default function HomePage() {
         title={t("body.section-3-title")}
         descriptionTexts={[t("body.section-3-1")]}
         index={3}
-      />
+      >
+        <CSharp className="size-8" />
+      </TextPanel>
       <TextPanel
         title={t("body.section-4-title")}
         descriptionTexts={[t("body.section-4-1"), t("body.section-4-2")]}
