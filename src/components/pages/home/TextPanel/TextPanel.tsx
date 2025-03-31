@@ -48,8 +48,8 @@ export default function TextPanel({
               {i < descriptionTexts.length - 1 ? <br /> : null}
             </div>
           ))}
-          {children}
         </div>
+        {children}
       </div>
       <div
         className={`animate-stack-radiate stack-illuminate-normal col-span-1 flex aspect-square items-center justify-center ${textRight ? "order-1" : ""}`}
