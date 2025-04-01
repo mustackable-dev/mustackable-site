@@ -5,6 +5,8 @@ import { createFilledArray, createFilledArrayWithFunction, getRandomInteger } fr
 
 const easingFunctions = ["ease", "ease-in", "ease-out", "ease-in-out", "linear", ...createFilledArray<string>(10, "bezier")];
 
+const stacksRightAlignments: boolean[] = [true, false, true, false, true];
+
 export function useSceneCalculation() {
     const { setSceneData, referenceStack } =
         useSceneDataStore(
@@ -14,8 +16,6 @@ export function useSceneCalculation() {
                     referenceStack: s.referenceStack
                 })),
         );
-
-    const stacksRightAlignments: boolean[] = [true, true, true, true, true];
 
     useEffect(() => {
 
