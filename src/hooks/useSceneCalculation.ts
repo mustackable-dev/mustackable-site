@@ -3,7 +3,6 @@ import { useSceneDataStore } from "../stores/SceneDataStore";
 import { useEffect } from "react";
 import { createFilledArray, createFilledArrayWithFunction, getRandomInteger } from "../utilities/Common";
 
-const stacksCount = 5;
 const easingFunctions = ["ease", "ease-in", "ease-out", "ease-in-out", "linear", ...createFilledArray<string>(10, "bezier")];
 
 export function useSceneCalculation() {
@@ -15,6 +14,8 @@ export function useSceneCalculation() {
                     referenceStack: s.referenceStack
                 })),
         );
+
+    const stacksRightAlignments: boolean[] = [true, true, true, true, true];
 
     useEffect(() => {
 
@@ -32,7 +33,7 @@ export function useSceneCalculation() {
 
             const animations: string[] = [];
 
-            for (let i = 0; i < stacksCount; i++) {
+            for (let i = 0; i < stacksRightAlignments.length; i++) {
                 const stackPosition = `
                     .stack-${i.toString()}-animation {
                         animation: 
@@ -45,7 +46,7 @@ export function useSceneCalculation() {
                             left: 0px
                         }
                         to {
-                            left: ${((stackWithHaloWidth + stackWithHaloWidth * 0.15) * (i % 2 === 1 ? 1 : -1)).toString()}px
+                            left: ${((stackWithHaloWidth + stackWithHaloWidth * 0.15) * (!stacksRightAlignments[i] ? 1 : -1)).toString()}px
                         }
                     }
 
@@ -180,5 +181,5 @@ export function useSceneCalculation() {
         }
     }, [referenceStack, setSceneData]);
 
-    return {};
+    return { stacksRightAlignments };
 }
