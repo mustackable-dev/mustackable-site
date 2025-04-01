@@ -1,9 +1,10 @@
 .light {
-  --primary-color: #343434;
-  --secondary-color: #575757;
+  --primary-color: #106bff;
+  --secondary-color: #343434;
   --tertiary-color: #635c51;
-  --background-color: #dadada;
-  --accent-color: #ffffff;
+  --background-color: #ebebecff;
+  --accent-color: rgb(231, 231, 231);
   --text-body-color: #575757;
   --text-heading-color: #343434;
+  --shine-intensity: 0.65;
 }

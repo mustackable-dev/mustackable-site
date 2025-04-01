@@ -93,6 +93,9 @@ export function useSceneCalculation() {
                         top: -25%;
                         opacity: 0%;
                     }
+                    
+                    .stack-placeholder-fade {
+                        animation: blink 200ms ease ${(fadeInTime + animationDuration * 0.43 + 220).toString()}ms forwards;}
 
                     @keyframes tap {
                         0% {

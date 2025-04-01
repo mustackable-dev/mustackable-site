@@ -4,6 +4,7 @@ import Level2 from "../../../../assets/images/stack_level_2.svg?react";
 import Level3 from "../../../../assets/images/stack_level_3.svg?react";
 import Level4 from "../../../../assets/images/stack_level_4.svg?react";
 import MagicWand from "../../../../assets/images/magic_wand.svg?react";
+import StackPlaceholder from "../../../../assets/images/stack_placeholder.svg?react";
 // import Touch from "../../../../assets/images/touch.svg?react";
 
 import { useSceneDataStore } from "../../../../stores/SceneDataStore";
@@ -33,8 +34,22 @@ export default function AnimatedLogo() {
           top: stackGap,
         }}
       />
+      <StackPlaceholder
+        className="stack-placeholder-fade absolute z-40 aspect-square"
+        style={{
+          width: stackWidth,
+          top: stackGap,
+        }}
+      />
       <Level2
         className="stack-2-animation absolute z-30 aspect-square"
+        style={{
+          width: stackWidth,
+          top: stackGap * 2,
+        }}
+      />
+      <StackPlaceholder
+        className="stack-placeholder-fade absolute z-30 aspect-square"
         style={{
           width: stackWidth,
           top: stackGap * 2,
@@ -47,8 +62,22 @@ export default function AnimatedLogo() {
           top: stackGap * 3,
         }}
       />
+      <StackPlaceholder
+        className="stack-placeholder-fade absolute z-20 aspect-square"
+        style={{
+          width: stackWidth,
+          top: stackGap * 3,
+        }}
+      />
       <Level4
         className="stack-4-animation absolute z-10 aspect-square"
+        style={{
+          width: stackWidth,
+          top: stackGap * 4,
+        }}
+      />
+      <StackPlaceholder
+        className="stack-placeholder-fade absolute z-10 aspect-square"
         style={{
           width: stackWidth,
           top: stackGap * 4,

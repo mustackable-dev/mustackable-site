@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
-import Locale from "../../../assets/images/locale.svg?react";
-import Chevron from "../../../assets/images/chevron.svg?react";
-import Button from "../../shared/Button";
+import Locale from "../../../../assets/images/locale.svg?react";
+import Chevron from "../../../../assets/images/chevron.svg?react";
+import Button from "../../../shared/Button";
 import { useState } from "react";
 
 export default function LocaleSelector() {

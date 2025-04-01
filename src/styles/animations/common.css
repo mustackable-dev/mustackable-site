@@ -8,13 +8,19 @@
 }
 
 @utility stack-illuminate-normal {
-  background-image: radial-gradient(rgb(135, 205, 222, 0.5), rgba(0, 0, 0, 0) 70%);
+  background-image: radial-gradient(
+    rgb(135, 205, 222, var(--shine-intensity)),
+    rgba(0, 0, 0, 0) 70%
+  );
   background-repeat: no-repeat;
   background-size: 0% 0%;
 }
 
 @utility stack-illuminate-logo {
-  background-image: radial-gradient(rgb(255, 212, 42, 0.5), rgba(0, 0, 0, 0) 70%);
+  background-image: radial-gradient(
+    rgb(255, 212, 42, var(--shine-intensity)),
+    rgba(0, 0, 0, 0) 70%
+  );
   background-repeat: no-repeat;
   background-size: 0% 0%;
 }

@@ -4,6 +4,7 @@ import ConfigurationBar from "./ConfigurationBar/ConfigurationBar";
 import Separator from "./Separator/Separator";
 import { useSceneDataStore } from "../../../stores/SceneDataStore";
 import { useShallow } from "zustand/shallow";
+import { useTheme } from "../../../hooks/useTheme";
 
 export default function Header() {
   const { t } = useTranslation();
@@ -12,6 +13,7 @@ export default function Header() {
       delay: (s.sceneData?.animationTimings[0] ?? 0) + (s.sceneData?.baseDelay ?? 0) + 1000,
     })),
   );
+  const { theme } = useTheme();
   return (
     <header
       className="animate-pop-in bg-theme-background fixed z-60 flex h-16 w-full justify-between px-4 max-sm:h-8 max-sm:px-2"
@@ -19,7 +21,15 @@ export default function Header() {
     >
       <a href="/" className="flex items-center gap-4 font-black max-sm:gap-2">
         <img className="size-8 max-sm:size-6" src="/logo.svg" />
-        <h3 className="text-theme-text-heading">{t("appName")}</h3>
+        <h3
+          className={`transition-colors duration-300 ${
+            theme === "dark"
+              ? "text-theme-text-heading hover:text-theme-secondary"
+              : "text-theme-secondary hover:text-theme-primary"
+          }`}
+        >
+          {t("appName")}
+        </h3>
       </a>
       <div className="flex items-center">
         <ContactBar />
