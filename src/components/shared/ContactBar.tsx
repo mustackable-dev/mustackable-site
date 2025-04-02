@@ -9,9 +9,7 @@ interface ContactBarProps {
 
 export default function ContactBar({ vertical = false }: ContactBarProps) {
   return (
-    <div
-      className={`flex ${vertical ? "flex-col" : "flex-row"} gap-4 max-sm:gap-2`}
-    >
+    <div className={`flex ${vertical ? "flex-col" : ""} gap-4 max-sm:gap-2`}>
       <Button>
         <FormMessage className="size-6 max-sm:size-4" />
       </Button>
