@@ -1,0 +1,39 @@
+{
+  "common": {
+    "appName": "MUSTACKABLE"
+  },
+  "locales": {
+    "en": "English",
+    "bg": "български"
+  },
+  "footer": {
+    "company-name": "Moustache Cabal Ltd",
+    "company-address-1": "18 Shipchenski prohod blvd.",
+    "company-address-2": "bldg. A, fl. 3, apt. 9",
+    "company-address-3": "1113 Sofia, Bulgaria",
+    "trademark-notice": "Mustackable is a trademark of",
+    "rights": "All rights reserved"
+  },
+  "home-page": {
+    "section-1-title": "Made for you",
+    "section-1-1": "We build custom software solutions to help you elevate your business.",
+    "section-1-2": "Stack the odds in your favour with robust and scalable applications tailored to YOUR needs!",
+    "section-2-title": "Whatever it takes",
+    "section-2-1": "We are a one-stop shop for all your software needs: backend, frontend, mobile and even AI.",
+    "section-2-2": "In the cloud or on-premise. We got this! :)",
+    "section-3-title": "Built to last",
+    "section-3-1": "We use a battle-tested stack of modern technologies:",
+    "section-4-title": "Avengers assemble",
+    "section-4-1": "Our lean team is a mix of outstanding developers and experienced consultants.",
+    "section-4-2": "We will be by your side all the way from project conception to deployment and beyond.",
+    "call-to-contact": "Tell us how we can help you!",
+    "contact-form": {
+      "character-limit": "Max 1000 characters",
+      "name": "Your Name",
+      "email": "Your Email",
+      "message": "Your Message",
+      "send": "Send",
+      "message-received": "Thank you for your message! We will contact you as soon as possible :)"
+    }
+  }
+}

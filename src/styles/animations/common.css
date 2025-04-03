@@ -1,0 +1,92 @@
+@theme inline {
+  --animate-text-illuminate-left: gradient-shift-left 3s ease forwards;
+  --animate-text-illuminate-right: gradient-shift-right 3s ease forwards;
+  --animate-stack-radiate: gradient-expand 2s ease forwards;
+  --animate-pop-in: pop-in 0.5s cubic-bezier(0.25, 0.5, 0.75, 1.5) backwards;
+  --animate-pop-out: pop-out 0.5s cubic-bezier(0.25, 0.5, 0.75, 1.5) forwards;
+  --animate-fade-in: fade-in 0.5s ease forwards;
+}
+
+@utility stack-illuminate-normal {
+  background-image: radial-gradient(
+    rgb(135, 205, 222, var(--shine-intensity)),
+    rgba(0, 0, 0, 0) 70%
+  );
+  background-repeat: no-repeat;
+  background-size: 0% 0%;
+}
+
+@utility stack-illuminate-logo {
+  background-image: radial-gradient(
+    rgb(255, 212, 42, var(--shine-intensity)),
+    rgba(0, 0, 0, 0) 70%
+  );
+  background-repeat: no-repeat;
+  background-size: 0% 0%;
+}
+
+@keyframes gradient-shift-left {
+  0% {
+    background-position-x: 0%;
+  }
+
+  100% {
+    background-position-x: 100%;
+  }
+}
+
+@keyframes gradient-shift-right {
+  0% {
+    background-position-x: 100%;
+  }
+
+  100% {
+    background-position-x: 0%;
+  }
+}
+
+@keyframes gradient-expand {
+  0% {
+    background-position: 50% 50%;
+    background-size: 50% 50%;
+  }
+
+  100% {
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+  }
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.5, 0.5);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes pop-out {
+  0% {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.5, 0.5);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,7 @@
+@utility theme-max-panel-width {
+  max-width: 950px;
+}
+
+@utility input {
+  @apply bg-theme-accent border-theme-secondary rounded-sm border-1 p-2 shadow-sm max-sm:p-1;
+}
