@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ThemeProviderContext } from "../contexts/ThemeProviderContext";
+import { ThemeProviderContext } from "@/contexts/ThemeProviderContext";
 
 export type Theme = "dark" | "light" | "system";
 

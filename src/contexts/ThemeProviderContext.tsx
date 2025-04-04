@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext } from "react";
-import { Theme } from "../providers/ThemeProvider";
+import { Theme } from "@/providers/ThemeProvider";
 
 interface ThemeProviderState {
   theme: Theme;
@@ -15,5 +15,4 @@ const initialState: ThemeProviderState = {
   systemTheme: "system",
 };
 
-export const ThemeProviderContext =
-  createContext<ThemeProviderState>(initialState);
+export const ThemeProviderContext = createContext<ThemeProviderState>(initialState);

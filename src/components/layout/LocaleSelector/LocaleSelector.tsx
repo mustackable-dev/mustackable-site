@@ -1,12 +1,12 @@
 "use client";
 
-import Locale from "../../../assets/images/locale.svg";
-import Chevron from "../../../assets/images/chevron.svg";
+import Locale from "@/assets/images/locale.svg";
+import Chevron from "@/assets/images/chevron.svg";
 import Button from "../../shared/Button";
 import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
-import { routing } from "../../../i18n/routing";
+import { routing } from "@/i18n/routing";
 
 export default function LocaleSelector() {
   const [dropdownOpen, setDropdownOpen] = useState(false);

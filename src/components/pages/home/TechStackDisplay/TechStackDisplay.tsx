@@ -1,14 +1,14 @@
-import CSharp from "../../../../assets/images/c_sharp.svg";
-import Net from "../../../../assets/images/dotnet.svg";
-import Typescript from "../../../../assets/images/typescript.svg";
-import ReactLogo from "../../../../assets/images/react.svg";
-import Expo from "../../../../assets/images/expo.svg";
-import Python from "../../../../assets/images/python.svg";
-import Blazor from "../../../../assets/images/blazor.svg";
-import Unity from "../../../../assets/images/unity.svg";
-import NextJS from "../../../../assets/images/nextjs.svg";
-import FastApi from "../../../../assets/images/fast_api.svg";
-import { useSceneDataStore } from "../../../../stores/SceneDataStore";
+import CSharp from "@/assets/images/c_sharp.svg";
+import Net from "@/assets/images/dotnet.svg";
+import Typescript from "@/assets/images/typescript.svg";
+import ReactLogo from "@/assets/images/react.svg";
+import Expo from "@/assets/images/expo.svg";
+import Python from "@/assets/images/python.svg";
+import Blazor from "@/assets/images/blazor.svg";
+import Unity from "@/assets/images/unity.svg";
+import NextJS from "@/assets/images/nextjs.svg";
+import FastApi from "@/assets/images/fast_api.svg";
+import { useSceneDataStore } from "@/hooks/useSceneDataStore";
 import { useShallow } from "zustand/shallow";
 
 export default function TechStackDisplay() {

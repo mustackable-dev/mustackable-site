@@ -1,13 +1,13 @@
-import Level0 from "../../../../assets/images/stack_level_0.svg";
-import Level1 from "../../../../assets/images/stack_level_1.svg";
-import Level2 from "../../../../assets/images/stack_level_2.svg";
-import Level3 from "../../../../assets/images/stack_level_3.svg";
-import Level4 from "../../../../assets/images/stack_level_4.svg";
-import MagicWand from "../../../../assets/images/magic_wand.svg";
-import StackPlaceholder from "../../../../assets/images/stack_placeholder.svg";
-// import Touch from "../../../../assets/images/touch.svg";
+import Level0 from "@/assets/images/stack_level_0.svg";
+import Level1 from "@/assets/images/stack_level_1.svg";
+import Level2 from "@/assets/images/stack_level_2.svg";
+import Level3 from "@/assets/images/stack_level_3.svg";
+import Level4 from "@/assets/images/stack_level_4.svg";
+import MagicWand from "@/assets/images/magic_wand.svg";
+import StackPlaceholder from "@/assets/images/stack_placeholder.svg";
+// import Touch from "@/assets/images/touch.svg";
 
-import { useSceneDataStore } from "../../../../stores/SceneDataStore";
+import { useSceneDataStore } from "@/hooks/useSceneDataStore";
 import { useShallow } from "zustand/shallow";
 
 export default function AnimatedLogo() {
@@ -16,7 +16,7 @@ export default function AnimatedLogo() {
       stackWidth: s.sceneData?.stackWidth ?? 0,
       stackGap: s.sceneData?.stackGap ?? 0,
       baseDelay: s.sceneData?.baseDelay ?? 0,
-    }))
+    })),
   );
 
   return (

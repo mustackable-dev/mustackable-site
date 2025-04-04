@@ -1,11 +1,13 @@
-import { useSceneDataStore } from "../../../../stores/SceneDataStore";
+import { useSceneDataStore } from "@/hooks/useSceneDataStore";
 import { useShallow } from "zustand/shallow";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-// import { useContactForm } from "../../../../hooks/useContactForm";
+import { useAppForm } from "@/hooks/useAppForm";
+import { processContactForm } from "@/services/contactService";
+import { contactFormDataSchema } from "@/types/ContactFormData";
 
-export default function ContactForm({ characterLimit = 1000, headerTitle = "" }) {
-  const t = useTranslations("home-page.contact-form");
+export default function ContactForm({ headerTitle = "" }) {
+  const t = useTranslations("form");
   const [characterCount, setCharacterCount] = useState(0);
   const [messageSent, setMessageSent] = useState(false);
   const { stackWithHaloWidth, delay } = useSceneDataStore(
@@ -14,7 +16,23 @@ export default function ContactForm({ characterLimit = 1000, headerTitle = "" })
       delay: (s.sceneData?.animationTimings[4] ?? 0) + (s.sceneData?.baseDelay ?? 0) + 1000,
     })),
   );
-  // const { sendContactForm } = useContactForm();
+
+  const Form = useAppForm({
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
+    validators: {
+      onChange: contactFormDataSchema,
+    },
+    onSubmit: ({ value }) => {
+      setMessageSent(true);
+      Promise.resolve(processContactForm(value)).catch(() => {
+        console.log("dris");
+      });
+    },
+  });
 
   return (
     <div
@@ -29,62 +47,62 @@ export default function ContactForm({ characterLimit = 1000, headerTitle = "" })
           <h2>{t("message-received")}</h2>
         </div>
       ) : (
-        <div
-          className="flex flex-col items-center gap-6 max-sm:gap-3"
-          style={{
-            width: stackWithHaloWidth * 3,
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            void Form.handleSubmit();
           }}
         >
-          <h2 className="text-theme-text-heading w-full text-center font-black">
-            {headerTitle.toUpperCase()}
-          </h2>
-          <div className="flex w-full flex-col items-center gap-4 max-sm:gap-2">
-            <div className="flex w-full gap-4 max-sm:gap-2">
-              <input
-                type="text"
-                name="nameInput"
-                tabIndex={0}
-                className="input w-full"
-                placeholder={t("name")}
-              />
-              <input
-                type="email"
-                className="input w-full"
-                name="emailInput"
-                tabIndex={1}
-                placeholder={t("email")}
-              />
-            </div>
-            <textarea
-              className="input w-full"
-              maxLength={1000}
-              placeholder={t("message")}
-              tabIndex={2}
-              style={{
-                height: stackWithHaloWidth * 1.5,
-                resize: "none",
-              }}
-              onChange={(x) => {
-                setCharacterCount(x.target.value.length);
-              }}
-            />
-            <div className="flex w-full items-center justify-between gap-4 max-sm:gap-2">
-              <p className="text-left">
-                <i>{`${characterCount.toString()}/${characterLimit.toString()}`}</i>
-              </p>
-              <button
-                onClick={() => {
-                  // sendContactForm();
-                  setMessageSent(true);
-                }}
-              >
-                <div className="border-theme-secondary hover:border-theme-primary hover:text-theme-primary cursor-pointer rounded-sm border-1 px-4 py-2 shadow-sm transition-colors duration-300 max-sm:p-1">
-                  {t("send")}
-                </div>
-              </button>
+          <div
+            className="flex flex-col items-center gap-6 max-sm:gap-3"
+            style={{
+              width: stackWithHaloWidth * 3,
+            }}
+          >
+            <h2 className="text-theme-text-heading w-full text-center font-black">
+              {headerTitle.toUpperCase()}
+            </h2>
+            <div className="flex w-full flex-col items-center gap-4 max-sm:gap-2">
+              <div className="flex w-full gap-4 max-sm:gap-2">
+                <Form.AppField name="name">
+                  {(field) => <field.TextField placeholder={t("name")} tabIndex={0} />}
+                </Form.AppField>
+                <Form.AppField name="email">
+                  {(field) => <field.TextField placeholder={t("email")} tabIndex={1} />}
+                </Form.AppField>
+              </div>
+              <Form.AppField name="message">
+                {(field) => (
+                  <div
+                    style={{
+                      height: stackWithHaloWidth * 1.5,
+                      resize: "none",
+                      width: "100%",
+                    }}
+                  >
+                    <field.MultilineTextField
+                      placeholder={t("message")}
+                      tabIndex={2}
+                      onChange={(e) => {
+                        setCharacterCount(e.target.value.length);
+                      }}
+                      maxLength={contactFormDataSchema.shape.message.maxLength ?? 0}
+                    />
+                  </div>
+                )}
+              </Form.AppField>
+
+              <div className="flex w-full items-center justify-between gap-4 max-sm:gap-2">
+                <p className="text-left">
+                  <i>{`${characterCount.toString()}/${(contactFormDataSchema.shape.message.maxLength ?? 0).toString()}`}</i>
+                </p>
+                <Form.AppForm>
+                  <Form.FormSubmitButton label={t("send")} />
+                </Form.AppForm>
+              </div>
             </div>
           </div>
-        </div>
+        </form>
       )}
     </div>
   );

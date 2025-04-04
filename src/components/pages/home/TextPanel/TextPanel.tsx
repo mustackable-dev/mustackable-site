@@ -1,4 +1,4 @@
-import { useSceneDataStore } from "../../../../stores/SceneDataStore";
+import { useSceneDataStore } from "@/hooks/useSceneDataStore";
 import { useShallow } from "zustand/shallow";
 
 interface TextPanelProps {

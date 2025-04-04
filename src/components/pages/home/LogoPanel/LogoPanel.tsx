@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { useSceneDataStore } from "../../../../stores/SceneDataStore";
+import { useSceneDataStore } from "@/hooks/useSceneDataStore";
 import { useShallow } from "zustand/shallow";
 
 export default function LogoPanel({ textRight = false }) {

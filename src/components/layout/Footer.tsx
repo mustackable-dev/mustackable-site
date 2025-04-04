@@ -1,7 +1,7 @@
 "use client";
 
 import ContactBar from "../shared/ContactBar";
-import { useSceneDataStore } from "../../stores/SceneDataStore";
+import { useSceneDataStore } from "@/hooks/useSceneDataStore";
 import { useShallow } from "zustand/shallow";
 import { useTranslations } from "next-intl";
 

@@ -4,7 +4,7 @@ import TextPanel from "./TextPanel/TextPanel";
 import LogoPanel from "./LogoPanel/LogoPanel";
 import AnimatedLogo from "./AnimatedLogo/AnimatedLogo";
 import ContactForm from "./ContactForm/ContactForm";
-import { useSceneCalculation } from "../../../hooks/useSceneCalculation";
+import { useSceneCalculation } from "@/hooks/useSceneCalculation";
 import TechStackDisplay from "./TechStackDisplay/TechStackDisplay";
 import { useTranslations } from "next-intl";
 

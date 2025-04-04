@@ -1,6 +1,6 @@
-import { RefObject } from "react"
-import { SceneData } from "../types/SceneData"
-import { create } from "../utilities/GlobalStoreReset"
+import { RefObject } from "react";
+import { SceneData } from "@/types/SceneData";
+import { create } from "@/utilities/GlobalStoreReset";
 
 interface SceneDataStore {
 

@@ -3,10 +3,10 @@
 import ConfigurationBar from "./ConfigurationBar/ConfigurationBar";
 import ContactBar from "../shared/ContactBar";
 import Separator from "./Separator/Separator";
-import { useSceneDataStore } from "../../stores/SceneDataStore";
+import { useSceneDataStore } from "@/hooks/useSceneDataStore";
 import { useShallow } from "zustand/shallow";
-import { useTheme } from "../../hooks/useTheme";
-import Logo from "../../assets/images/logo.svg";
+import { useTheme } from "@/hooks/useTheme";
+import Logo from "@/assets/images/logo.svg";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 
