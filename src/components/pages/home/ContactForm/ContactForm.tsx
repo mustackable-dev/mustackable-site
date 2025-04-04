@@ -28,9 +28,13 @@ export default function ContactForm({ headerTitle = "" }) {
     },
     onSubmit: ({ value }) => {
       setMessageSent(true);
-      Promise.resolve(processContactForm(value)).catch(() => {
-        console.log("dris");
-      });
+      Promise.resolve(processContactForm(value))
+        .then((x) => {
+          console.log(x ? "Valid email address" : "Invalid email address");
+        })
+        .catch(() => {
+          console.log("dris");
+        });
     },
   });
 
@@ -54,7 +58,7 @@ export default function ContactForm({ headerTitle = "" }) {
           }}
         >
           <div
-            className="flex flex-col items-center gap-6 max-sm:gap-3"
+            className="flex flex-col items-center gap-3 max-sm:gap-2"
             style={{
               width: stackWithHaloWidth * 3,
             }}
@@ -62,44 +66,48 @@ export default function ContactForm({ headerTitle = "" }) {
             <h2 className="text-theme-text-heading w-full text-center font-black">
               {headerTitle.toUpperCase()}
             </h2>
-            <div className="flex w-full flex-col items-center gap-4 max-sm:gap-2">
-              <div className="flex w-full gap-4 max-sm:gap-2">
-                <Form.AppField name="name">
-                  {(field) => <field.TextField placeholder={t("name")} tabIndex={0} />}
-                </Form.AppField>
-                <Form.AppField name="email">
-                  {(field) => <field.TextField placeholder={t("email")} tabIndex={1} />}
-                </Form.AppField>
-              </div>
-              <Form.AppField name="message">
+            <div className="flex w-full gap-4 max-sm:gap-2">
+              <Form.AppField name="name">
                 {(field) => (
-                  <div
-                    style={{
-                      height: stackWithHaloWidth * 1.5,
-                      resize: "none",
-                      width: "100%",
-                    }}
-                  >
-                    <field.MultilineTextField
-                      placeholder={t("message")}
-                      tabIndex={2}
-                      onChange={(e) => {
-                        setCharacterCount(e.target.value.length);
-                      }}
-                      maxLength={contactFormDataSchema.shape.message.maxLength ?? 0}
-                    />
-                  </div>
+                  <field.TextField
+                    placeholder={t("name")}
+                    errorMessage={t("name-error")}
+                    tabIndex={0}
+                  />
                 )}
               </Form.AppField>
-
-              <div className="flex w-full items-center justify-between gap-4 max-sm:gap-2">
-                <p className="text-left">
-                  <i>{`${characterCount.toString()}/${(contactFormDataSchema.shape.message.maxLength ?? 0).toString()}`}</i>
-                </p>
-                <Form.AppForm>
-                  <Form.FormSubmitButton label={t("send")} />
-                </Form.AppForm>
-              </div>
+              <Form.AppField name="email">
+                {(field) => (
+                  <field.TextField
+                    placeholder={t("email")}
+                    errorMessage={t("email-error")}
+                    tabIndex={1}
+                  />
+                )}
+              </Form.AppField>
+            </div>
+            <div className="w-full" style={{ height: stackWithHaloWidth * 1.5 }}>
+              <Form.AppField name="message">
+                {(field) => (
+                  <field.MultilineTextField
+                    placeholder={t("message")}
+                    tabIndex={2}
+                    onChange={(e) => {
+                      setCharacterCount(e.target.value.length);
+                    }}
+                    maxLength={contactFormDataSchema.shape.message.maxLength ?? 0}
+                    errorMessage={t("message-error")}
+                  />
+                )}
+              </Form.AppField>
+            </div>
+            <div className="flex h-fit w-full items-center justify-between gap-4 max-sm:gap-2">
+              <p className="text-left">
+                <i>{`${characterCount.toString()}/${(contactFormDataSchema.shape.message.maxLength ?? 0).toString()}`}</i>
+              </p>
+              <Form.AppForm>
+                <Form.FormSubmitButton label={t("send")} />
+              </Form.AppForm>
             </div>
           </div>
         </form>

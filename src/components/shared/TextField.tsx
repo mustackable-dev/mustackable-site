@@ -7,6 +7,7 @@ interface TextFieldProps {
   minLength?: number;
   maxLength?: number;
   type?: string;
+  errorMessage?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -15,25 +16,33 @@ export default function TextField({
   tabIndex,
   onChange,
   type,
+  errorMessage,
   minLength,
   maxLength,
 }: TextFieldProps) {
   const field = useFieldContext<string>();
   return (
-    <input
-      type={type ?? "text"}
-      tabIndex={tabIndex}
-      className="input w-full"
-      placeholder={placeholder}
-      onChange={(e) => {
-        field.handleChange(e.target.value);
-        if (onChange) onChange(e);
-      }}
-      name={field.name}
-      value={field.state.value}
-      onBlur={field.handleBlur}
-      minLength={minLength}
-      maxLength={maxLength}
-    />
+    <div className="flex w-full flex-col">
+      <p
+        className={`text-red-500 ${field.state.meta.errors.length > 0 && field.state.meta.isBlurred ? "visible" : "invisible"} w-full`}
+      >
+        {errorMessage}
+      </p>
+      <input
+        type={type ?? "text"}
+        tabIndex={tabIndex}
+        className="input w-full"
+        placeholder={placeholder}
+        onChange={(e) => {
+          field.handleChange(e.target.value);
+          if (onChange) onChange(e);
+        }}
+        name={field.name}
+        value={field.state.value}
+        onBlur={field.handleBlur}
+        minLength={minLength}
+        maxLength={maxLength}
+      />
+    </div>
   );
 }

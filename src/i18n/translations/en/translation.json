@@ -20,7 +20,10 @@
     "email": "Your Email",
     "message": "Your Message",
     "send": "Send",
-    "message-received": "Thank you for your message! We will contact you as soon as possible :)"
+    "message-received": "Thank you for your message! We will contact you as soon as possible :)",
+    "name-error": "Please enter at least 3 symbols.",
+    "email-error": "Invalid email",
+    "message-error": "Please enter at least 50 symbols"
   },
   "home-page": {
     "section-1-title": "Made for you",
