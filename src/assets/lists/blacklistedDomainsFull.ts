@@ -1,5 +1,5 @@
 export function isDomainBlacklistedFull(email: string): boolean {
-    return !BLACKLISTED_DOMAINS_SET.has(email.split("@")[1]);
+    return BLACKLISTED_DOMAINS_SET.has(email.split("@")[1]);
 }
 
 const BLACKLISTED_DOMAINS_SET = new Set([
