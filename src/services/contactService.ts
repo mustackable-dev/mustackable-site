@@ -2,7 +2,10 @@
 
 import { isDomainBlacklistedFull } from "@/assets/lists/blacklistedDomainsFull";
 import { ContactFormData } from "@/types/ContactFormData";
-import nodemailer, { Transporter } from 'nodemailer';
+import { getTranslations } from "next-intl/server";
+import nodemailer, { Transporter } from "nodemailer";
+import { MESSAGE_RECEIVED_TEMPLATE } from "@/assets/templates/MessageReceived";
+import { convertNewLinesToBreaks } from "@/utilities/Common";
 
 const transport: Transporter = nodemailer.createTransport({
     pool: true,
@@ -15,13 +18,37 @@ const transport: Transporter = nodemailer.createTransport({
     },
 });
 
-export async function processContactForm(data: ContactFormData): Promise<boolean> {
+export async function processContactForm(data: ContactFormData, locale: string): Promise<boolean> {
     if (isDomainBlacklistedFull(data.email)) return Promise.resolve(false);
+    const tFooter = await getTranslations({ locale, namespace: "footer" });
+    const t = await getTranslations({ locale, namespace: "emails.message-received" });
+
+    //Internal email
+
+    const notificationBody = `FROM: ${data.email}\r\n\r\nMESSAGE:\r\n\r\n${data.message}`;
+
+    await transport.sendMail({
+        from: process.env.USERNAME,
+        to: process.env.HANDLER,
+        subject: `New Contact Form Received - ${(new Date).toISOString()}`,
+        text: notificationBody
+    })
+
+    //Visitor email
+
+    const emailBody = MESSAGE_RECEIVED_TEMPLATE
+        .replaceAll("{{thank-you}}", t('thank-you'))
+        .replaceAll("{{message-received}}", t('message-received'))
+        .replaceAll("{{message-body}}", convertNewLinesToBreaks(data.message))
+        .replaceAll("{{closing-paragraph}}", t('closing-paragraph'))
+        .replaceAll("{{trademark}}", `${tFooter("trademark-notice")} ${tFooter("company-name")}`)
+        .replaceAll("{{copyright}}", `© ${new Date().getFullYear().toString()} ${tFooter("company-name")}. ${tFooter("rights")}.`);
+
     await transport.sendMail({
         from: process.env.USERNAME,
         to: data.email,
-        subject: "Test",
-        html: `<p>From: ${data.name} Message: ${data.message}</p>`,
+        subject: t('subject'),
+        html: emailBody,
     })
     return Promise.resolve(true);
 }

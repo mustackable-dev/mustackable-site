@@ -1,7 +1,9 @@
+"use client";
+
 import { useSceneDataStore } from "@/hooks/useSceneDataStore";
 import { useShallow } from "zustand/shallow";
-import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { useAppForm } from "@/hooks/useAppForm";
 import { processContactForm } from "@/services/contactService";
 import { contactFormDataSchema } from "@/types/ContactFormData";
@@ -10,6 +12,8 @@ export default function ContactForm({ headerTitle = "" }) {
   const t = useTranslations("form");
   const [characterCount, setCharacterCount] = useState(0);
   const [messageSent, setMessageSent] = useState(false);
+  const locale = useLocale();
+
   const { stackWithHaloWidth, delay } = useSceneDataStore(
     useShallow((s) => ({
       stackWithHaloWidth: s.sceneData?.stackWithHaloWidth ?? 0,
@@ -28,15 +32,24 @@ export default function ContactForm({ headerTitle = "" }) {
     },
     onSubmit: ({ value }) => {
       setMessageSent(true);
-      Promise.resolve(processContactForm(value))
-        .then((x) => {
-          console.log(x ? "Valid email address" : "Invalid email address");
+      Promise.resolve(processContactForm(value, locale))
+        .then(() => {
+          localStorage.setItem("lastFormSent", Date.now().toString());
         })
         .catch(() => {
           console.log("dris");
         });
     },
   });
+
+  useEffect(() => {
+    const lastSent: number = parseFloat(localStorage.getItem("lastFormSent") ?? "0");
+    if (lastSent + 60 * 5 * 1000 > Date.now()) {
+      setMessageSent(true);
+    } else {
+      setMessageSent(false);
+    }
+  }, []);
 
   return (
     <div

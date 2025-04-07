@@ -15,7 +15,7 @@ export default function FormSubmitButton({ label, onClick }: FormSubmitButtonPro
           type="submit"
           disabled={!canSubmit || isSubmitting}
           onClick={onClick}
-          className={`border-theme-secondary enabled:hover:border-theme-primary enabled:hover:text-theme-primary rounded-sm border-1 px-4 py-2 shadow-sm transition-colors duration-300 disabled:opacity-50 max-sm:p-1`}
+          className={`border-theme-secondary enabled:hover:border-theme-primary enabled:hover:text-theme-primary rounded-sm border-1 px-4 py-2 shadow-sm transition-colors duration-300 enabled:cursor-pointer disabled:opacity-50 max-sm:p-1`}
         >
           <span>{isSubmitting ? "..." : label}</span>
         </button>

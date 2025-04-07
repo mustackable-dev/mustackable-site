@@ -8,7 +8,7 @@ export default function LogoPanel({ textRight = false }) {
     useShallow((s) => ({
       stackWithHaloWidth: s.sceneData?.stackWithHaloWidth,
       referenceStack: s.referenceStack,
-      delay: (s.sceneData?.animationTimings[0] ?? 0) + (s.sceneData?.baseDelay ?? 0),
+      delay: (s.sceneData?.animationTimings[0] ?? 0) + 100 + (s.sceneData?.baseDelay ?? 0),
     })),
   );
 

@@ -38,5 +38,13 @@
     "section-4-1": "Our lean team is a mix of outstanding developers and experienced consultants.",
     "section-4-2": "We will be by your side all the way from project conception to deployment and beyond.",
     "call-to-contact": "Tell us how we can help you!"
+  },
+  "emails": {
+    "message-received": {
+      "subject": "Thank you for your message!",
+      "thank-you": "Thank you!",
+      "message-received": "We appreciate you reaching out to us with your inquiry, here is the message you sent us:",
+      "closing-paragraph": "Our team is currently reviewing your question, and we will get back to you as soon as possible."
+    }
   }
 }
