@@ -29,6 +29,7 @@ export default tseslint.config(
           tsconfigRootDir: import.meta.dirname
         },
       },
+      ignores: ["server.js"]
     }
   ],
   ...tseslint.configs.recommendedTypeChecked,
