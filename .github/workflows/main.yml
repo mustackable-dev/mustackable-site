@@ -3,7 +3,7 @@ name: Mustackable Deploy
 on:
   push:
     branches:
-      - main 
+      - main
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -21,15 +21,22 @@ jobs:
         run: |
           npm install
           npm run build
-          
-      - name: FTP Deployer
-        uses: sand4rt/ftp-deployer@v1.8
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          host: ${{ secrets.DEPLOY_HOST }}
-          port: ${{ secrets.PORT }}
+          server: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USER }}
           password: ${{ secrets.DEPLOY_PASSWORD }}
-          include: '['.next','src','public','server,js','package.json']'
-          passive: true
-          
-          
+          port: ${{ secrets.PORT }}
+          protocol: ftps
+          exclude: |
+            **/.vscode*/**
+            **/docs*/**
+            .env*
+            *.yaml
+            *.mjs
+            *.ts
+            *.md
+            tsconfig.json
+            .prettierrc
+            *.ts
