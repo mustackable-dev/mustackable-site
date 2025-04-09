@@ -84,20 +84,12 @@ export default function ContactForm({ headerTitle = "" }) {
             <div className="flex w-full gap-4 max-sm:gap-2">
               <Form.AppField name="name">
                 {(field) => (
-                  <field.TextField
-                    placeholder={t("name")}
-                    errorMessage={t("name-error")}
-                    tabIndex={0}
-                  />
+                  <field.TextField placeholder={t("name")} errorMessage={t("name-error")} />
                 )}
               </Form.AppField>
               <Form.AppField name="email">
                 {(field) => (
-                  <field.TextField
-                    placeholder={t("email")}
-                    errorMessage={t("email-error")}
-                    tabIndex={1}
-                  />
+                  <field.TextField placeholder={t("email")} errorMessage={t("email-error")} />
                 )}
               </Form.AppField>
             </div>
@@ -106,7 +98,6 @@ export default function ContactForm({ headerTitle = "" }) {
                 {(field) => (
                   <field.MultilineTextField
                     placeholder={t("message")}
-                    tabIndex={2}
                     onChange={(e) => {
                       setCharacterCount(e.target.value.length);
                     }}

@@ -3,7 +3,7 @@ import { ChangeEvent } from "react";
 
 interface TextFieldProps {
   placeholder: string;
-  tabIndex: number;
+  tabIndex?: number;
   minLength?: number;
   maxLength?: number;
   type?: string;

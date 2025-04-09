@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import DarkMode from "@/assets/images/dark_mode.svg";
 import LightMode from "@/assets/images/light_mode.svg";
 import { useTheme } from "@/hooks/useTheme";
-import Button from "../../shared/Button";
+import Button from "@/components/shared/Button";
 
 export default function ThemeModeSwitcher() {
   const { theme, systemTheme, setTheme } = useTheme();
@@ -18,6 +18,7 @@ export default function ThemeModeSwitcher() {
 
   return (
     <Button
+      title="Switch theme mode"
       onClick={() => {
         setSwitchingTheme(true);
         setTheme(targetTheme);

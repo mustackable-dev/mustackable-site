@@ -1,5 +1,5 @@
-import LocaleSelector from "../LocaleSelector/LocaleSelector";
-import ThemeModeSwitcher from "../ThemeModeSwitcher/ThemeModeSwitcher";
+import LocaleSelector from "./LocaleSelector/LocaleSelector";
+import ThemeModeSwitcher from "./ThemeModeSwitcher/ThemeModeSwitcher";
 
 export default function ConfigurationBar() {
   return (
