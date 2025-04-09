@@ -10,11 +10,11 @@ import { convertNewLinesToBreaks } from "@/utilities/Common";
 const transport: Transporter = nodemailer.createTransport({
     pool: true,
     host: process.env.HOST ?? "",
-    port: Number(process.env.SMTP_PORT),
+    port: Number(process.env.MUSTACKABLE_DEV_SMTP_PORT),
     secure: true,
     auth: {
-        user: (process.env.USERNAME ?? ""),
-        pass: (process.env.PASSWORD ?? "")
+        user: (process.env.MUSTACKABLE_DEV_USERNAME ?? ""),
+        pass: (process.env.MUSTACKABLE_DEV_PASSWORD ?? "")
     },
 });
 
@@ -28,8 +28,8 @@ export async function processContactForm(data: ContactFormData, locale: string):
     const notificationBody = `FROM: ${data.email}\r\n\r\nMESSAGE:\r\n\r\n${data.message}`;
 
     await transport.sendMail({
-        from: process.env.USERNAME,
-        to: process.env.HANDLER,
+        from: process.env.MUSTACKABLE_DEV_USERNAME,
+        to: process.env.MUSTACKABLE_DEV_HANDLER,
         subject: `New Contact Form Received - ${(new Date).toISOString()}`,
         text: notificationBody
     })
@@ -45,7 +45,7 @@ export async function processContactForm(data: ContactFormData, locale: string):
         .replaceAll("{{copyright}}", `© ${new Date().getFullYear().toString()} ${tFooter("company-name")}. ${tFooter("rights")}.`);
 
     await transport.sendMail({
-        from: process.env.USERNAME,
+        from: process.env.MUSTACKABLE_DEV_USERNAME,
         to: data.email,
         subject: t('subject'),
         html: emailBody,

@@ -29,5 +29,19 @@ jobs:
           password: ${{ secrets.DEPLOY_PASSWORD }}
           port: ${{ secrets.PORT }}
           protocol: ftps
-          dangerous-clean-slate: true
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules
+            **/.vscode
+      - name: FTP Deployer
+        uses: sand4rt/ftp-deployer@v1.8
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          port: ${{ secrets.PORT }}
+          username: ${{ secrets.DEPLOY_USER }}
+          password: ${{ secrets.DEPLOY_PASSWORD }}
+          include: '['.next','src','public','server,js','package.json']'
+          passive: true
+          
           
