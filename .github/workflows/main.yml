@@ -21,19 +21,7 @@ jobs:
         run: |
           npm install
           npm run build
-      - name: FTP Deploy
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USER }}
-          password: ${{ secrets.DEPLOY_PASSWORD }}
-          port: ${{ secrets.PORT }}
-          protocol: ftps
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules
-            **/.vscode
+          
       - name: FTP Deployer
         uses: sand4rt/ftp-deployer@v1.8
         with:
