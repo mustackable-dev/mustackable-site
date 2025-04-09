@@ -14,10 +14,11 @@ export default function ContactForm({ headerTitle = "" }) {
   const [messageSent, setMessageSent] = useState(false);
   const locale = useLocale();
 
-  const { stackWithHaloWidth, delay } = useSceneDataStore(
+  const { stackWithHaloWidth, delay, referenceContactForm } = useSceneDataStore(
     useShallow((s) => ({
       stackWithHaloWidth: s.sceneData?.stackWithHaloWidth ?? 0,
       delay: (s.sceneData?.animationTimings[4] ?? 0) + (s.sceneData?.baseDelay ?? 0) + 1000,
+      referenceContactForm: s.referenceContactForm,
     })),
   );
 
@@ -55,6 +56,7 @@ export default function ContactForm({ headerTitle = "" }) {
     <div
       className="animate-pop-in py-16 max-sm:py-8"
       style={{ animationDelay: `${delay.toString()}ms` }}
+      ref={referenceContactForm}
     >
       {messageSent ? (
         <div
