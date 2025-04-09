@@ -8,10 +8,12 @@ interface SceneDataStore {
     setSceneData: (data: SceneData) => void
 
     referenceStack: RefObject<HTMLDivElement | null>
+    referenceContactForm: RefObject<HTMLDivElement | null>
 }
 
 export const useSceneDataStore = create('animationData')<SceneDataStore>()((set) => (
     {
         setSceneData: (data) => { set({ sceneData: data }) },
-        referenceStack: { current: null }
+        referenceStack: { current: null },
+        referenceContactForm: { current: null }
     }))

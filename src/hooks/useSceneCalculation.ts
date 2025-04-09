@@ -57,7 +57,59 @@ export function useSceneCalculation() {
                         to {
                             top: ${((stackWithHaloWidth - stackWidth) / 2 + i * (stackWithHaloWidth + stackWithHaloWidth * 0.2)).toString()}px;
                         }
-                    }`;
+                    }
+
+                    @keyframes gradient-shift-left {
+                    0% {
+                        background-position-x: 0%;
+                    }
+
+                    100% {
+                        background-position-x: 100%;
+                    }
+                    }
+
+                    @keyframes gradient-shift-right {
+                    0% {
+                        background-position-x: 100%;
+                    }
+
+                    100% {
+                        background-position-x: 0%;
+                    }
+                    }
+
+                    @keyframes gradient-expand {
+                    0% {
+                        background-position: 50% 50%;
+                        background-size: 50% 50%;
+                    }
+
+                    100% {
+                        background-position: 50% 50%;
+                        background-size: 100% 100%;
+                    }
+                    }
+                    
+                    .stack-illuminate-normal {
+                        background-image: radial-gradient(
+                            rgb(135, 205, 222, var(--shine-intensity)),
+                            rgba(0, 0, 0, 0) 70%
+                        );
+                        background-repeat: no-repeat;
+                        background-size: 0% 0%;
+                    }
+
+                    .stack-illuminate-logo {
+                        background-image: radial-gradient(
+                            rgb(255, 212, 42, var(--shine-intensity)),
+                            rgba(0, 0, 0, 0) 70%
+                        );
+                        background-repeat: no-repeat;
+                        background-size: 0% 0%;
+                    }
+                    
+                `;
                 animations.push(stackPosition);
             };
 
