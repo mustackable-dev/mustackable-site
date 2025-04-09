@@ -25,7 +25,7 @@ export async function processContactForm(data: ContactFormData, locale: string):
 
     //Internal email
 
-    const notificationBody = `FROM: ${data.email}\r\n\r\nMESSAGE:\r\n\r\n${data.message}`;
+    const notificationBody = `FROM: ${data.email}\r\n\r\nNAME: ${data.name}\r\n\r\nMESSAGE:\r\n\r\n${data.message}`;
 
     await transport.sendMail({
         from: process.env.MUSTACKABLE_DEV_USERNAME,
