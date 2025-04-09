@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ThemeProviderContext } from "../contexts/ThemeProviderContext";
+import { ThemeProviderContext } from "@/contexts/ThemeProviderContext";
 
 export type Theme = "dark" | "light" | "system";
 
@@ -15,8 +15,8 @@ interface ThemeConfiguration {
 }
 
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
-  const storageKey = process.env.NEXT_PUBLIC_STORAGE_KEY as "mustackable-site";
-  const defaultTheme = process.env.NEXT_PUBLIC_THEME_DEFAULT as Theme;
+  const storageKey = "mustackable";
+  const defaultTheme = "dark";
 
   const [themeConfiguration, setThemeConfiguration] = useState<ThemeConfiguration>({
     theme: defaultTheme,

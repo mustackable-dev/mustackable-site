@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { useSceneDataStore } from "../../../../stores/SceneDataStore";
+import { useSceneDataStore } from "@/hooks/useSceneDataStore";
 import { useShallow } from "zustand/shallow";
 
 export default function LogoPanel({ textRight = false }) {
@@ -8,7 +8,7 @@ export default function LogoPanel({ textRight = false }) {
     useShallow((s) => ({
       stackWithHaloWidth: s.sceneData?.stackWithHaloWidth,
       referenceStack: s.referenceStack,
-      delay: (s.sceneData?.animationTimings[0] ?? 0) + (s.sceneData?.baseDelay ?? 0),
+      delay: (s.sceneData?.animationTimings[0] ?? 0) + 100 + (s.sceneData?.baseDelay ?? 0),
     })),
   );
 

@@ -1,6 +1,6 @@
-import GitHub from "../../assets/images/github.svg";
-import LinkedId from "../../assets/images/linkedin.svg";
-import FormMessage from "../../assets/images/form_message.svg";
+import GitHub from "@/assets/images/github.svg";
+import LinkedId from "@/assets/images/linkedin.svg";
+import FormMessage from "@/assets/images/form_message.svg";
 import Button from "./Button";
 
 interface ContactBarProps {

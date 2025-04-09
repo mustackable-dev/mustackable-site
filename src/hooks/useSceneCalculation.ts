@@ -1,9 +1,9 @@
 import { useShallow } from "zustand/shallow";
-import { useSceneDataStore } from "../stores/SceneDataStore";
+import { useSceneDataStore } from "@/hooks/useSceneDataStore";
 import { useEffect } from "react";
-import { createFilledArray, createFilledArrayWithFunction, getRandomInteger } from "../utilities/Common";
+import { createFilledArray, createFilledArrayWithFunction, getRandomInteger } from "@/utilities/Common";
 
-const easingFunctions = ["ease", "ease-in", "ease-out", "ease-in-out", "linear", ...createFilledArray<string>(10, "bezier")];
+const easingFunctions = ["ease", "ease-in", "ease-out", "ease-in-out", "linear", ...createFilledArray<string>(5, "bezier")];
 
 const stacksRightAlignments: boolean[] = [true, false, true, false, true];
 

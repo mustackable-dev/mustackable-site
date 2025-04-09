@@ -1,4 +1,4 @@
-import { useSceneDataStore } from "../../../../stores/SceneDataStore";
+import { useSceneDataStore } from "@/hooks/useSceneDataStore";
 import { useShallow } from "zustand/shallow";
 
 interface TextPanelProps {
@@ -19,7 +19,7 @@ export default function TextPanel({
   const { stackWithHaloWidth, delay } = useSceneDataStore(
     useShallow((s) => ({
       stackWithHaloWidth: s.sceneData?.stackWithHaloWidth,
-      delay: (s.sceneData?.animationTimings[index] ?? 0) + (s.sceneData?.baseDelay ?? 0),
+      delay: (s.sceneData?.animationTimings[index] ?? 0) + 100 + (s.sceneData?.baseDelay ?? 0),
     })),
   );
 

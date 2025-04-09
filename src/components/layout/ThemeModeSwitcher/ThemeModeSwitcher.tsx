@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import DarkMode from "../../../assets/images/dark_mode.svg";
-import LightMode from "../../../assets/images/light_mode.svg";
-import { useTheme } from "../../../hooks/useTheme";
+import DarkMode from "@/assets/images/dark_mode.svg";
+import LightMode from "@/assets/images/light_mode.svg";
+import { useTheme } from "@/hooks/useTheme";
 import Button from "../../shared/Button";
 
 export default function ThemeModeSwitcher() {

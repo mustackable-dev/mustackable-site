@@ -4,5 +4,6 @@
   "i18n-ally.keystyle": "nested",
   "i18n-ally.extract.ignored": ["(prefers-color-scheme: dark)"],
   "i18n-ally.localesPaths": ["src/i18n/translations"],
-  "css.lint.unknownAtRules": "ignore"
+  "css.lint.unknownAtRules": "ignore",
+  "prettier.semi": true
 }
