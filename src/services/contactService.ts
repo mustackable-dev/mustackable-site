@@ -6,6 +6,7 @@ import { getTranslations } from "next-intl/server";
 import nodemailer, { Transporter } from "nodemailer";
 import { MESSAGE_RECEIVED_TEMPLATE } from "@/assets/templates/MessageReceived";
 import { convertNewLinesToBreaks } from "@/utilities/Common";
+import { Address } from "nodemailer/lib/mailer";
 
 const transport: Transporter = nodemailer.createTransport({
     pool: true,
@@ -22,13 +23,14 @@ export async function processContactForm(data: ContactFormData, locale: string):
     if (isDomainBlacklistedFull(data.email)) return Promise.resolve(false);
     const tFooter = await getTranslations({ locale, namespace: "footer" });
     const t = await getTranslations({ locale, namespace: "emails.message-received" });
+    const sender: Address = { name: "Mustackable", address: process.env.MUSTACKABLE_DEV_USERNAME ?? "" }
 
     //Internal email
 
     const notificationBody = `FROM: ${data.email}\r\n\r\nNAME: ${data.name}\r\n\r\nMESSAGE:\r\n\r\n${data.message}`;
 
     await transport.sendMail({
-        from: process.env.MUSTACKABLE_DEV_USERNAME,
+        from: sender,
         to: process.env.MUSTACKABLE_DEV_HANDLER,
         subject: `New Contact Form Received - ${(new Date).toISOString()}`,
         text: notificationBody
@@ -45,7 +47,7 @@ export async function processContactForm(data: ContactFormData, locale: string):
         .replaceAll("{{copyright}}", `© ${new Date().getFullYear().toString()} ${tFooter("company-name")}. ${tFooter("rights")}.`);
 
     await transport.sendMail({
-        from: process.env.MUSTACKABLE_DEV_USERNAME,
+        from: sender,
         to: data.email,
         subject: t('subject'),
         html: emailBody,
