@@ -15,7 +15,3 @@ We host our website as a Node.js app operated via cPanel on Namecheap. We needed
 The tricky part was getting the Node.js app to restart after FTP transfer finished, but we found a way to achieve this.
 
 Feel free to copy this Github Action/Workflow, if you have to deploy your own Node.js project to a cPanel host 👍🐷
-
-## License
-
-MIT - do whatever you want with it :)
