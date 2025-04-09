@@ -30,6 +30,9 @@ jobs:
           port: ${{ secrets.PORT }}
           protocol: ftps
           exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
             **/.vscode*/**
             **/docs*/**
             .env*
