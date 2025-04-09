@@ -22,7 +22,6 @@ export default function LocaleSelector() {
   return (
     <div
       className="relative flex flex-col items-end"
-      aria-expanded={dropdownOpen}
       aria-label="Select language"
       onMouseEnter={() => {
         setDropdownOpen(true);
