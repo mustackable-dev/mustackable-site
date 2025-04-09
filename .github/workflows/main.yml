@@ -55,3 +55,21 @@ jobs:
           script: |
             cd mustackable
             ./deploy.sh
+
+#deploy.sh
+
+##!/bin/bash
+
+#USER="{{your cPanel user name}}"
+#APP_ROOT="/home/$USER/{deploy directory}"
+
+#source /home/$USER/nodevenv/{deploy directory}/{your Node.js major version number, e.g. 22}/bin/activate && cd /home/$USER/{deploy directory}
+
+#echo "Running npm install..."
+#npm install || { echo "npm install failed"; exit 1; }
+
+#echo "Stopping Node.js app..."
+#cloudlinux-selector stop --json --interpreter nodejs --user $USER --app-root $APP_ROOT || { echo "Failed to stop application"; exit 1; }
+
+#echo "Starting Node.js app..."
+#cloudlinux-selector start --json --interpreter nodejs --user $USER --app-root $APP_ROOT || { echo "Failed to start application"; exit 1; }
