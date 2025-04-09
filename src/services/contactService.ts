@@ -9,7 +9,7 @@ import { convertNewLinesToBreaks } from "@/utilities/Common";
 
 const transport: Transporter = nodemailer.createTransport({
     pool: true,
-    host: process.env.HOST ?? "",
+    host: process.env.MUSTACKABLE_DEV_HOST ?? "",
     port: Number(process.env.MUSTACKABLE_DEV_SMTP_PORT),
     secure: true,
     auth: {
