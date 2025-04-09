@@ -4,7 +4,7 @@ import { ChangeEvent } from "react";
 interface MultilineTextFieldProps {
   onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
   placeholder: string;
-  tabIndex: number;
+  tabIndex?: number;
   errorMessage?: string;
   resize?: boolean;
   minLength?: number;

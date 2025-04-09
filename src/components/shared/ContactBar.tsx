@@ -26,16 +26,24 @@ export default function ContactBar({ vertical = false }: ContactBarProps) {
 
   return (
     <div className={`flex ${vertical ? "flex-col" : ""} gap-4 max-sm:gap-2`}>
-      <Button onClick={scrollToContactForm}>
+      <Button title="Send contact form" onClick={scrollToContactForm}>
         <FormMessage className="size-6 max-sm:size-4" />
       </Button>
-      <Button>
-        <Link href="https://www.linkedin.com/company/mustackable" target="_blank">
+      <Button title="Open LinkedIn profile">
+        <Link
+          href="https://www.linkedin.com/company/mustackable"
+          target="_blank"
+          aria-label="Open Mustackable's LinkedIn profile"
+        >
           <LinkedId className="size-6 max-sm:size-4" />
         </Link>
       </Button>
-      <Button>
-        <Link href="https://github.com/mustackable-dev" target="_blank">
+      <Button title="Open GitHub organization">
+        <Link
+          href="https://github.com/mustackable-dev"
+          target="_blank"
+          aria-label="Open Mustackable's GitHub profile"
+        >
           <GitHub className="size-6 max-sm:size-4" />
         </Link>
       </Button>

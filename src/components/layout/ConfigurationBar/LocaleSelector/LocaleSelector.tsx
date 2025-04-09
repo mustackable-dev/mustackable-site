@@ -2,7 +2,7 @@
 
 import Locale from "@/assets/images/locale.svg";
 import Chevron from "@/assets/images/chevron.svg";
-import Button from "../../shared/Button";
+import Button from "@/components/shared/Button";
 import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
@@ -24,6 +24,7 @@ export default function LocaleSelector() {
       className="relative flex flex-col items-end"
       aria-haspopup="true"
       aria-expanded={dropdownOpen}
+      aria-label="Select language"
       onMouseEnter={() => {
         setDropdownOpen(true);
       }}
@@ -31,7 +32,7 @@ export default function LocaleSelector() {
         setDropdownOpen(false);
       }}
     >
-      <Button>
+      <Button title="Select language">
         <div className="flex items-center gap-1">
           <Locale className="size-6 max-sm:size-4" />
           <Chevron className="size-5 rotate-90 max-sm:size-3" />
@@ -43,6 +44,7 @@ export default function LocaleSelector() {
         <div className="bg-theme-accent border-theme-secondary flex w-fit flex-col items-start gap-2 rounded-sm border-1 p-2 max-sm:p-1">
           {routing.locales.map((x) => (
             <Button
+              title={t(x)}
               disabled={currentLocale === x}
               key={x}
               onClick={() => {
