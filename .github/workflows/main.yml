@@ -42,6 +42,7 @@ jobs:
             *.md
             tsconfig.json
             .prettierrc
+            LICENSE
             *.ts
 
       - name: SSH Remote Commands
