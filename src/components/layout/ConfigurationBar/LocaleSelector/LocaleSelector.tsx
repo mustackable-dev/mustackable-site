@@ -16,7 +16,7 @@ export default function LocaleSelector() {
   const currentLocale = useLocale();
 
   function handleClick(locale: string) {
-    router.push(pathname, { locale: locale });
+    router.replace(pathname, { locale: locale });
   }
 
   return (
