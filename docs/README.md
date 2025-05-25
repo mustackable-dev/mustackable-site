@@ -12,6 +12,4 @@ We have included some of our preferred IDE/project/linting settings in the repo 
 
 We host our website as a Node.js app operated via cPanel on Namecheap. We needed to create a special GitHub action/workflow in order to automate the deployment.
 
-The tricky part was getting the Node.js app to restart after FTP transfer finished, but we found a way to achieve this (see [here](https://github.com/mustackable-dev/mustackable-site/blob/main/.github/workflows/main.yml)).
-
-Feel free to copy this Github Action/Workflow, if you have to deploy your own Node.js project to a cPanel host 👍🐷
+The tricky part was getting the Node.js app to restart after FTP transfer finished. You can see [here](https://github.com/mustackable-dev/mustackable-site/blob/main/.github/workflows/main.yml) how we did it.
